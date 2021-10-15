@@ -1,2 +1,0 @@
-# Teams.WPF
-Teams.WPF

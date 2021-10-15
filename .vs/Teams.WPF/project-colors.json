@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "620d233b-e323-47d1-bd12-358642004119": {
+      "ProjectGuid": "620d233b-e323-47d1-bd12-358642004119",
+      "DisplayName": "Teams.WPF",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "ba7ac841-2093-4798-bf6f-f6fd74a0fc60": {
+      "ProjectGuid": "ba7ac841-2093-4798-bf6f-f6fd74a0fc60",
+      "DisplayName": "ChatHost",
+      "ColorIndex": 1
+    },
+    "d68ad64b-9596-4f97-87b9-c0082670060a": {
+      "ProjectGuid": "d68ad64b-9596-4f97-87b9-c0082670060a",
+      "DisplayName": "Teams.Client",
+      "ColorIndex": 2
+    },
+    "d63c8897-e233-4ebc-9876-fb7fb436d02b": {
+      "ProjectGuid": "d63c8897-e233-4ebc-9876-fb7fb436d02b",
+      "DisplayName": "Teams.Chat",
+      "ColorIndex": 3
+    },
+    "7797152c-8595-411f-8f02-37d34aed6691": {
+      "ProjectGuid": "7797152c-8595-411f-8f02-37d34aed6691",
+      "DisplayName": "Teams.Client.Wpf",
+      "ColorIndex": 4
+    },
+    "28e00480-0585-4d7e-b47d-d896fcafa6c2": {
+      "ProjectGuid": "28e00480-0585-4d7e-b47d-d896fcafa6c2",
+      "DisplayName": "Teams.Client",
+      "ColorIndex": 5
+    }
+  },
+  "NextColorIndex": 6
+}
