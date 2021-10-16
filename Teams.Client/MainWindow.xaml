@@ -33,6 +33,8 @@
                         Background="{x:Null}" BorderBrush="{x:Null}"  >
                     <materialDesign:PackIcon Kind="ChevronRight" HorizontalAlignment="Center" />
                 </Button>
+
+
                 <!--<Button Margin="125 5 0 5" Width="50" HorizontalAlignment="Left"
                         Background="{x:Null}" BorderBrush="{x:Null}" >
                     <Grid>
@@ -73,31 +75,31 @@
                     </Button.Triggers>
                 </Button>-->
 
-                <TextBox Margin="5" Width="350" Height="30"  >
-                    <TextBox.Style>
-                        <Style TargetType="TextBox" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                
 
-                            <Style.Resources>
-                                <VisualBrush x:Key="CueBannerBrush" AlignmentX="Left" AlignmentY="Center" Stretch="None">
-                                    <VisualBrush.Visual>
-                                        <Label Content="Search" Foreground="Black" Background="White"/>
-                                    </VisualBrush.Visual>
-                                </VisualBrush>
-                            </Style.Resources>
-                            <Style.Triggers>
-                                 <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="Text" Value="{x:Null}">
-                                    <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
-                                </Trigger>
-                                <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter Property="Background" Value="White" />
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBox.Style>
-                </TextBox >
+                <StackPanel Background="White" Width="250" Height="30" Margin="250,0,0,0">
+                    <Grid>
+                        <TextBox Name="searchTextBox" 
+                                 Width="250" Height="32" HorizontalAlignment="Left"
+                                 VerticalAlignment="Top" VerticalContentAlignment="Center"
+                                  materialDesign:HintAssist.Hint="Serch people...."/>
+                        <TextBlock IsHitTestVisible="False" 
+                                   VerticalAlignment="Center" Margin="10,5,10,10"
+                                   HorizontalAlignment="Left">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=searchTextBox}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                </StackPanel>
 
                 <Button Margin="190 5 0 5" Width="50" HorizontalAlignment="Left"
                         Background="{x:Null}" BorderBrush="{x:Null}" >
@@ -199,12 +201,37 @@
             </TextBox>
         </Grid>
         <Grid x:Name="SendMessage" Grid.Row="3" Grid.ColumnSpan="5" Background="#F2F2EC" Margin="295,0,0,0" >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Background="White" Width="350" Height="50" Margin="50,0,0,0">
+                <Grid>
+                    <TextBox Name="SendTextBox"  Margin="0,2,0,0" 
+                                 Width="350" Height="50" HorizontalAlignment="Left"
+                                 VerticalAlignment="Top" VerticalContentAlignment="Center"
+                                 materialDesign:HintAssist.Hint="Send message"/>
+                             
+                    <TextBlock   
+                                   IsHitTestVisible="False" 
+                                   VerticalAlignment="Center" Margin="10,5,10,10"
+                                   HorizontalAlignment="Left">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text, ElementName=SendTextBox}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox  Margin="5" Width="550"
                           Background="White" Height="60" 
                           materialDesign:HintAssist.Hint="Send message" 
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" Cursor="IBeam"/>
-            </StackPanel>
+                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" Cursor="IBeam"/>
+            </StackPanel>-->
 
         </Grid>
         <Grid Grid.Row="4" Grid.ColumnSpan="5" Background="#F5F5F5" Margin="295,0,0,0" >
