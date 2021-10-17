@@ -3,17 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:Teams.Client"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:viewmodel="clr-namespace:Teams.Client.MVVM.ViewModel"
         mc:Ignorable="d"
-        Title="" Height="900" Width="1080">
+        Height="900" Width="1080"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"  >
+    <Window.DataContext>
+
+        <viewmodel:MainViewModel/>
+
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="95"></ColumnDefinition>
             <ColumnDefinition Width="200"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -22,18 +30,24 @@
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid x:Name="Head" Grid.ColumnSpan="10" Background="#6264A7" >
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Margin="5" Width="50" Height="40"
-                        HorizontalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="ChevronLeft" HorizontalAlignment="Center"/>
+        <Border x:Name="Head" Grid.ColumnSpan="5" 
+                Background="#6264A7"
+                MouseDown="Head_MouseDown">
 
-                </Button>
-                <Button Margin="5" Width="50" HorizontalAlignment="Left" 
-                        Background="{x:Null}" BorderBrush="{x:Null}"  >
-                    <materialDesign:PackIcon Kind="ChevronRight" HorizontalAlignment="Center" />
-                </Button>
-
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left">
+                    <Button Margin="5" Width="50" Height="40"                  
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}" >
+                        <materialDesign:PackIcon Kind="ChevronLeft" />
+                    </Button>
+                    <Button Margin="5" Width="50" 
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}"  >
+                        <materialDesign:PackIcon Kind="ChevronRight"/>
+                    </Button>
+                </StackPanel>
 
                 <!--<Button Margin="125 5 0 5" Width="50" HorizontalAlignment="Left"
                         Background="{x:Null}" BorderBrush="{x:Null}" >
@@ -75,17 +89,14 @@
                     </Button.Triggers>
                 </Button>-->
 
-                
-
-                <StackPanel Background="White" Width="250" Height="30" Margin="250,0,0,0">
+                <StackPanel Background="White" Width="250" Height="30" HorizontalAlignment="Center">
                     <Grid>
-                        <TextBox Name="searchTextBox" 
+                        <!--временно юзернейм-->
+                        <TextBox x:Name="searchTextBox" 
                                  Width="250" Height="32" HorizontalAlignment="Left"
                                  VerticalAlignment="Top" VerticalContentAlignment="Center"
-                                  materialDesign:HintAssist.Hint="Serch people...."/>
-                        <TextBlock IsHitTestVisible="False" 
-                                   VerticalAlignment="Center" Margin="10,5,10,10"
-                                   HorizontalAlignment="Left">
+                                  materialDesign:HintAssist.Hint="Serch people...." />
+                        <TextBlock IsHitTestVisible="False">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Setter Property="Visibility" Value="Hidden"/>
@@ -101,117 +112,180 @@
                     </Grid>
                 </StackPanel>
 
-                <Button Margin="190 5 0 5" Width="50" HorizontalAlignment="Left"
-                        Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="AccountCircle" HorizontalAlignment="Center" />
-                </Button >
-                <Button Margin="5" Width="50"
-                         Background="{x:Null}" BorderBrush="{x:Null}">
-                    <materialDesign:PackIcon Kind="CloseBox" HorizontalAlignment="Center"/>
-                </Button>
-                <Button Margin="5" Width="50 " HorizontalAlignment="Left" 
-                        Background="{x:Null}" BorderBrush="{x:Null}">
-                    <materialDesign:PackIcon Kind="CloseBox"/>
-                </Button>
-                <Button Width="50"
-                         Background="{x:Null}" BorderBrush="{x:Null}">
-                    <materialDesign:PackIcon Kind="CloseBox" HorizontalAlignment="Left"/>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="lefttMenu" Grid.RowSpan="10" Background="#343644" Margin="0,50,0,0" >
-            <StackPanel Orientation="Vertical">
-                <Button  Margin="5" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <Grid Width="40" Height="50">
-                        <materialDesign:PackIcon Kind="BellRing"  HorizontalAlignment="Center" />
-                        <TextBlock  HorizontalAlignment="Center" Padding="0 20 0 0" FontSize="10" >Activity</TextBlock>
-                    </Grid>
-                </Button>
-                <Button Margin="5" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <Grid Width="40" Height="50">
-                        <materialDesign:PackIcon Kind="Message" HorizontalAlignment="Center" />
-                        <TextBlock TextAlignment="Center" Padding="0 20 0 0" FontSize="10" >Chat</TextBlock>
-                    </Grid>
-                </Button>
-                <Button Margin="5" Height="40" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Grid Width="40" Height="50">
-                        <materialDesign:PackIcon Kind="MicrosoftTeams" HorizontalAlignment="Center"/>
-                        <TextBlock TextAlignment="Center" Padding="0 20 0 0" FontSize="10">Teams</TextBlock>
-                    </Grid>
-                </Button>
-                <Button Margin="5" Height="40" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Grid Width="42" Height="50">
-                        <materialDesign:PackIcon Kind="Calendar" HorizontalAlignment="Center" />
-                        <TextBlock TextAlignment="Center" Padding="0 20 0 0" FontSize="10" Grid.RowSpan="2">Calendar</TextBlock>
-                    </Grid>
-                </Button >
-                <Button Margin="5" Height="45" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Grid Width="40" Height="50">
-                        <materialDesign:PackIcon Kind="Phone" HorizontalAlignment="Center"/>
-                        <TextBlock TextAlignment="Center" Padding="0 20 0 0" FontSize="10">Calls</TextBlock>
-                    </Grid>
-                </Button>
-                <Button Margin="5" Height="45" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Grid Width="40" Height="50">
-                        <materialDesign:PackIcon Kind="File" HorizontalAlignment="Center"/>
-                        <TextBlock TextAlignment="Center" Padding="0 20 0 0" FontSize="10">Files</TextBlock>
-                    </Grid>
-                </Button>
-                <Button Margin="5 400 5 0" Height="45" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Grid Width="40" Height="50">
-                        <materialDesign:PackIcon Kind="Apps" HorizontalAlignment="Center"/>
-                        <TextBlock TextAlignment="Center" Padding="0 20 0 0" FontSize="10"><Run Text="Apps"/></TextBlock>
-                    </Grid>
-                </Button>
-                <Button Margin="5" Height="45" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Grid Width="40" Height="50">
-                        <materialDesign:PackIcon Kind="HelpCircle" HorizontalAlignment="Center"/>
-                        <TextBlock TextAlignment="Center" Padding="0 20 0 0" FontSize="10"><Run Text="Help"/></TextBlock>
-                    </Grid>
-                </Button>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="MenuTeam" Grid.Column="1" Grid.RowSpan="10" Background="#F0F0F0" Margin="0,51,0,0" >
-            <TextBox Margin="5" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" >Team</TextBox>
-            <TreeView Margin="0,30,0,0">
-                <TextBox>Your teams</TextBox>
-                <TreeViewItem Header="General">
-                    <TreeViewItem Header="General" />
-                    <TreeViewItem Header="blabla" />
-                    <TreeViewItem Header="blabla" />
-                    <TreeViewItem Header="blabla" />
-                </TreeViewItem>
-                <TreeViewItem Header="Hr leader">
-                    <TreeViewItem Header="General">
-                        <TreeViewItem Header="blabla" />
-                        <TreeViewItem Header="blabla" />
-                        <TreeViewItem Header="blabla" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Busnes">
-                        <TreeViewItem Header="General" />
-                        <TreeViewItem Header="Blabla" />
-                        <TreeViewItem Header="blabla" />
-                    </TreeViewItem>
-                </TreeViewItem>
-            </TreeView>
-        </Grid>
-        <Grid x:Name="ChatBox" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
-            <TextBox Height="auto" Width="auto" Background="White">
+                <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
 
-            </TextBox>
+                    <Button x:Name="bUserConnect"
+                            Click="ConnectUser"
+                            HorizontalAlignment="Right" Margin="5" Width="50" 
+                         Background="{x:Null}" 
+                         BorderBrush="{x:Null}" >
+                        <Grid>
+                            <materialDesign:PackIcon Kind="AccountCircle" 
+                                                 VerticalAlignment="Center" />
+                            <TextBlock x:Name="TBConnect"
+                                    Padding="0 11 0 0" 
+                                    FontSize="9" Margin="-8,0,-26,-13" >Connect</TextBlock>
+                        </Grid>
+                    </Button>
+
+                    <Button Margin="5" Width="50"
+                        Content="_"
+                         Background="{x:Null}" 
+                        BorderBrush="{x:Null}"
+                           Click="ButtonMinimaze_Click">
+                    </Button>
+                    <Button Margin="5" Width="50 " 
+                        Content="☐"
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}"
+                            Click="WindowStateButton_Click">
+                    </Button>
+                    <Button Width="50"
+                        Content="✕"
+                         Background="{x:Null}" 
+                        BorderBrush="{x:Null}"
+                          Click="ButtonShutdown_Click" >
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border x:Name="lefttMenu" Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" 
+              Background="#343644">
+            <Grid>
+                <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top">
+                    <Button  Margin="5" Height="40" 
+                         Background="{x:Null}" 
+                         BorderBrush="{x:Null}" >
+                        <Grid Width="40" Height="50">
+                            <materialDesign:PackIcon Kind="BellRing" 
+                                                 HorizontalAlignment="Center" />
+                            <TextBlock  HorizontalAlignment="Center" 
+                                    Padding="0 20 0 0" 
+                                    FontSize="10" >Activity</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button Margin="5" Height="40" 
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}" >
+                        <Grid Width="40" Height="50">
+                            <materialDesign:PackIcon Kind="Message"
+                                                 HorizontalAlignment="Center" />
+                            <TextBlock TextAlignment="Center" 
+                                   Padding="0 20 0 0"
+                                   FontSize="10" >Chat</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button Margin="5" Height="40"
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}">
+                        <Grid Width="40" Height="50">
+                            <materialDesign:PackIcon Kind="MicrosoftTeams"
+                                                 HorizontalAlignment="Center"/>
+                            <TextBlock TextAlignment="Center" 
+                                   Padding="0 20 0 0" 
+                                   FontSize="10">Teams</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button Margin="5" Height="40" 
+                        Background="{x:Null}" 
+                        BorderBrush="{x:Null}">
+                        <Grid Width="42" Height="50">
+                            <materialDesign:PackIcon Kind="Calendar" 
+                                                 HorizontalAlignment="Center" />
+                            <TextBlock TextAlignment="Center"
+                                   Padding="0 20 0 0"
+                                   FontSize="10"
+                                   Grid.RowSpan="2">Calendar</TextBlock>
+                        </Grid>
+                    </Button >
+                    <Button Margin="5" Height="45" Background="{x:Null}"
+                        BorderBrush="{x:Null}">
+                        <Grid Width="40" Height="50">
+                            <materialDesign:PackIcon Kind="Phone"
+                                                 HorizontalAlignment="Center"/>
+                            <TextBlock TextAlignment="Center" 
+                                   Padding="0 20 0 0"
+                                   FontSize="10">Calls</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button Margin="5" Height="45"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}">
+                        <Grid Width="40" Height="50">
+                            <materialDesign:PackIcon Kind="File"
+                                                 HorizontalAlignment="Center"/>
+                            <TextBlock TextAlignment="Center"
+                                   Padding="0 20 0 0" 
+                                   FontSize="10">Files</TextBlock>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                                VerticalAlignment="Bottom">
+                    <Button Height="45" 
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}">
+                        <Grid Width="40" Height="50">
+                            <materialDesign:PackIcon Kind="Apps" 
+                                                 HorizontalAlignment="Center"/>
+                            <TextBlock TextAlignment="Center"
+                                   Padding="0 20 0 0"
+                                   FontSize="10">Apps</TextBlock>
+                        </Grid>
+                    </Button>
+                    <Button Margin="5" Height="45"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}">
+                        <Grid Width="40" Height="50">
+                            <materialDesign:PackIcon Kind="HelpCircle" 
+                                                 HorizontalAlignment="Center"/>
+                            <TextBlock TextAlignment="Center" 
+                                   Padding="0 20 0 0" 
+                                   FontSize="10">Help</TextBlock>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid x:Name="MenuTeam" Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" 
+              Background="#F0F0F0" Margin="20" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label VerticalAlignment="Center" 
+                   HorizontalAlignment="Center"
+                   FontWeight="Medium"
+                   FontSize="16">
+                Team</Label>
+            <ListBox x:Name="Users" Grid.Row="1">
+
+            </ListBox>
         </Grid>
-        <Grid x:Name="SendMessage" Grid.Row="3" Grid.ColumnSpan="5" Background="#F2F2EC" Margin="295,0,0,0" >
-            <StackPanel Background="White" Width="350" Height="50" Margin="50,0,0,0">
-                <Grid>
-                    <TextBox Name="SendTextBox"  Margin="0,2,0,0" 
-                                 Width="350" Height="50" HorizontalAlignment="Left"
-                                 VerticalAlignment="Top" VerticalContentAlignment="Center"
-                                 materialDesign:HintAssist.Hint="Send message"/>
-                             
-                    <TextBlock   
-                                   IsHitTestVisible="False" 
-                                   VerticalAlignment="Center" Margin="10,5,10,10"
-                                   HorizontalAlignment="Left">
+        <Grid x:Name="ChatBox" Margin="30" Grid.Row="1" Grid.Column="2"
+              Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="LbChat" Height="auto" Width="auto"
+                     Background="White" Grid.ColumnSpan="3">
+
+            </ListBox>
+        </Grid>
+        <Border x:Name="SendMessage" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5" Background="#F2F2EC" >
+            <Grid >
+                <StackPanel Background="White" Margin="15">
+                    <TextBox  x:Name="SendTextBox" Height="70" Width="750"
+                                 HorizontalAlignment="Left"
+                                 VerticalContentAlignment="Bottom"
+                                  materialDesign:HintAssist.Hint="Send message ...." KeyDown="SendTextBox_KeyDown" 
+                                 />
+                    <TextBlock IsHitTestVisible="False">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Hidden"/>
@@ -224,27 +298,28 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-                </Grid>
-            </StackPanel>
-            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                </StackPanel>
+                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBox  Margin="5" Width="550"
                           Background="White" Height="60" 
                           materialDesign:HintAssist.Hint="Send message" 
                           Style="{StaticResource MaterialDesignFloatingHintTextBox}" Cursor="IBeam"/>
             </StackPanel>-->
 
-        </Grid>
-        <Grid Grid.Row="4" Grid.ColumnSpan="5" Background="#F5F5F5" Margin="295,0,0,0" >
-            <StackPanel Orientation="Horizontal" Margin="120,0,0,0">
-                <Button VerticalAlignment="Top">1</Button>
-                <Button VerticalAlignment="Top" >2</Button>
-                <Button VerticalAlignment="Top">Button3</Button>
-                <Button VerticalAlignment="Top" >Button 4</Button>
-                <Button VerticalAlignment="Top" >Button 5</Button>
-                <Button VerticalAlignment="Top" >Button 6</Button>
-                <Button VerticalAlignment="Top"  Margin="50,0,0,0">send</Button>
-            </StackPanel>
-
-        </Grid>
+            </Grid>
+        </Border>
+        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Background="#F5F5F5" >
+            <Grid >
+                <StackPanel Orientation="Horizontal" Margin="120,0,0,0">
+                    <Button VerticalAlignment="Top">1</Button>
+                    <Button VerticalAlignment="Top" >2</Button>
+                    <Button VerticalAlignment="Top">Button3</Button>
+                    <Button VerticalAlignment="Top" >Button 4</Button>
+                    <Button VerticalAlignment="Top" >Button 5</Button>
+                    <Button VerticalAlignment="Top" >Button 6</Button>
+                    <Button VerticalAlignment="Top"  Margin="50,0,0,0">send</Button>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
