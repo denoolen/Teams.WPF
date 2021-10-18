@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Teams.Client.MVVM.ViewModel;
 using Teams.Client.ServiceChat;
 
 namespace Teams.Client
@@ -19,39 +20,42 @@ namespace Teams.Client
 	/// <summary>
 	/// Логика взаимодействия для MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window, IServiceChatCallback
+	public partial class MainWindow : Window
+		//, IServiceChatCallback
 	{
-		bool IsConnected = false;
-		int ID;
-		ServiceChatClient client;
+		//bool IsConnected = false;
+		//int ID;
+		//ServiceChatClient client;
 		
 		public MainWindow()
 		{
 			InitializeComponent();
-		}
-		void ConnectUser()
-		{
 			
-			if (!IsConnected)
-			{
-				client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
-				ID = client.Connect(searchTextBox.Text);
-				searchTextBox.IsEnabled = false;
-				TBConnect.Text = "Disconnect";
-				IsConnected = true;
-			}
 		}
-		void DisconnectUser()
-		{
-			if (IsConnected)
-			{
-				client.Disconnect(ID);
-				client = null;
-				searchTextBox.IsEnabled = true;
-				TBConnect.Text = "Connect";
-				IsConnected = false;
-			}
-		}
+		//void ConnectUser()
+		//{
+			
+		//	if (!IsConnected)
+		//	{
+		//		client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
+		//		ID = client.Connect(searchTextBox.Text);
+		//		searchTextBox.IsEnabled = false;
+		//		//MessageBox.Show("Hello");
+		//		TBConnect.Text = "Disconnect";
+		//		IsConnected = true;
+		//	}
+		//}
+		//void DisconnectUser()
+		//{
+		//	if (IsConnected)
+		//	{
+		//		client.Disconnect(ID);
+		//		client = null;
+		//		searchTextBox.IsEnabled = true;
+		//		TBConnect.Text = "Connect";
+		//		IsConnected = false;
+		//	}
+		//}
 
 		private void Head_MouseDown(object sender, MouseButtonEventArgs e)
 		{
@@ -68,7 +72,7 @@ namespace Teams.Client
 
 		private void ButtonShutdown_Click(object sender, RoutedEventArgs e)
 		{
-			DisconnectUser();
+			//DisconnectUser();
 			Application.Current.Shutdown();
 		}
 
@@ -80,35 +84,35 @@ namespace Teams.Client
 				Application.Current.MainWindow.WindowState = WindowState.Normal;
 		}
 
-		private void ConnectUser(object sender, RoutedEventArgs e)
-		{
-			if (IsConnected)
-			{
-				DisconnectUser();
-			}
-			else
-			{
-				ConnectUser();
-			}
+		//private void ConnectUser(object sender, RoutedEventArgs e)
+		//{
+		//	if (IsConnected)
+		//	{
+		//		DisconnectUser();
+		//	}
+		//	else
+		//	{
+		//		ConnectUser();
+		//	}
 
-		}
+		//}
 
-		public void MsgCallback(string msg)
-		{
-			LbChat.Items.Add(msg);
-		}
+		//public void MsgCallback(string msg)
+		//{
+		//	LbChat.Items.Add(msg);
+		//}
 
-		private void SendTextBox_KeyDown(object sender, KeyEventArgs e)
-		{
-			if(e.Key == Key.Enter)
-			{
-				if (client != null)
-				{
-					client.SendMsg(searchTextBox.Text, ID);
-					SendTextBox.Text = String.Empty;	
-				}
+		//private void SendTextBox_KeyDown(object sender, KeyEventArgs e)
+		//{
+		//	if(e.Key == Key.Enter)
+		//	{
+		//		if (client != null)
+		//		{
+		//			client.SendMsg(searchTextBox.Text, ID);
+		//			SendTextBox.Text = String.Empty;	
+		//		}
 				
-			}
-		}
+		//	}
+		//}
 	}
 }

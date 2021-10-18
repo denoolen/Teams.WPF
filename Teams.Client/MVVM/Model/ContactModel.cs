@@ -1,17 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Teams.Client.MVVM.Model
 {
-	class ContactModel
+	public class ContactModel : INotifyPropertyChanged
 	{
-		public string UserName { get; set; }
-		public string ImageSource { get; set; }
-		public ObservableCollection<MessageModel> Messages { get; set; }
-		public string LastMessage => Messages.Last().Message;
-	}
-}
+	
+
+	        private string ContactName;
+            private string StatusMessage;
+           
+
+            public string Contactname
+            {
+                get { return ContactName; }
+                set
+                {
+                    ContactName = value;
+                    OnPropertyChanged("Contactname");
+                }
+            }
+            public string Statusmessage
+            {
+                get { return StatusMessage; }
+                set
+                {
+                    StatusMessage = value;
+                    OnPropertyChanged("Statusmessage");
+                }
+            }
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            public void OnPropertyChanged([CallerMemberName] string prop = "")
+            {
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
+        }
+
+    }
+

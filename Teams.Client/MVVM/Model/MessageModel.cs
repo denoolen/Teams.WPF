@@ -8,13 +8,6 @@ namespace Teams.Client.MVVM.Model
 {
 	class MessageModel
 	{
-		public string UserName { get; set; }
-		public string Message { get; set; }
-		public string UserNameCoulor { get; set; }
-		public string ImageSource { get; set; }
-		public DateTime Time { get; set; }
-	    public bool IsNativeOrigin { get; set; }
-		public bool? FirstMassege { get; set; }
-		
+
 	}
 }

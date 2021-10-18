@@ -21,3 +21,4 @@ C:\Users\user\source\repos\Teams.WPF\Teams.Client\obj\Debug\Teams.Client.exe
 C:\Users\user\source\repos\Teams.WPF\Teams.Client\obj\Debug\Teams.Client.pdb
 C:\Users\user\source\repos\Teams.WPF\Teams.Client\obj\Debug\Teams.Client.csproj.AssemblyReference.cache
 C:\Users\user\source\repos\Teams.WPF\Teams.Client\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\user\source\repos\Teams.WPF\Teams.Client\obj\Debug\Dictionary1.baml

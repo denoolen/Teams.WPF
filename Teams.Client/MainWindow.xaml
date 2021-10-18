@@ -11,9 +11,7 @@
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"  >
     <Window.DataContext>
-
-        <viewmodel:MainViewModel/>
-
+        <viewmodel:MainViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -88,27 +86,38 @@
                         </EventTrigger>
                     </Button.Triggers>
                 </Button>-->
-
                 <StackPanel Background="White" Width="250" Height="30" HorizontalAlignment="Center">
                     <Grid>
-                        <!--временно юзернейм-->
-                        <TextBox x:Name="searchTextBox" 
-                                 Width="250" Height="32" HorizontalAlignment="Left"
-                                 VerticalAlignment="Top" VerticalContentAlignment="Center"
-                                  materialDesign:HintAssist.Hint="Serch people...." />
-                        <TextBlock IsHitTestVisible="False">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                    <Setter Property="Foreground" Value="Black"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Text, ElementName=searchTextBox}" Value="">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                            Width="Auto" />
+                            <ColumnDefinition
+                                 Width="*" />
+                            <ColumnDefinition
+                                 Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                  Style="{DynamicResource MaterialDesignToolButton}">
+                            <materialDesign:PackIcon
+              Kind="Search"
+              Opacity=".56" />
+                        </Button>
+                        <TextBox
+            Grid.Column="1"
+            Margin="8 0 0 0"
+            materialDesign:HintAssist.Hint="Search somthing..."
+            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+            BorderThickness="0"
+            MinWidth="200"
+            VerticalAlignment="Center" />
+                        <Button
+            Style="{DynamicResource MaterialDesignToolButton}"
+            Grid.Column="2">
+                            <materialDesign:PackIcon
+              Kind="Microphone"
+              Opacity=".56"
+              Margin="8 0 0 0" />
+                        </Button>
                     </Grid>
                 </StackPanel>
 
@@ -116,7 +125,7 @@
                         HorizontalAlignment="Right">
 
                     <Button x:Name="bUserConnect"
-                            Click="ConnectUser"
+                          
                             HorizontalAlignment="Right" Margin="5" Width="50" 
                          Background="{x:Null}" 
                          BorderBrush="{x:Null}" >
@@ -125,7 +134,7 @@
                                                  VerticalAlignment="Center" />
                             <TextBlock x:Name="TBConnect"
                                     Padding="0 11 0 0" 
-                                    FontSize="9" Margin="-8,0,-26,-13" >Connect</TextBlock>
+                                    FontSize="9"  ></TextBlock>
                         </Grid>
                     </Button>
 
@@ -250,10 +259,10 @@
             </Grid>
         </Border>
         <Grid x:Name="MenuTeam" Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" 
-              Background="#F0F0F0" Margin="20" >
+              Background="#F0F0F0" Margin="10" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
             <Label VerticalAlignment="Center" 
@@ -261,9 +270,42 @@
                    FontWeight="Medium"
                    FontSize="16">
                 Team</Label>
-            <ListBox x:Name="Users" Grid.Row="1">
-
-            </ListBox>
+            <TreeView Grid.Row="1" Margin="5">
+                <materialDesign:TreeViewAssist.AdditionalTemplate>
+                    <DataTemplate>
+                        <materialDesign:ColorZone
+                    Mode="PrimaryLight"
+                    CornerRadius="5">
+                            <TextBlock
+                          FontSize="12"
+                          FontStyle="Italic"
+                                Margin="8"
+                          Text="4 online" />
+                        </materialDesign:ColorZone>
+                    </DataTemplate>
+                </materialDesign:TreeViewAssist.AdditionalTemplate>
+                <TreeViewItem
+                    Header="General">
+                    <ListBox ItemsSource="{Binding Phones}"
+                 SelectedItem="{Binding SelectedPhone}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="1">
+                                    <materialDesign:Chip
+                                    Content="{Binding Contactname}"
+                                IsDeletable="True"
+                                  ToolTip="{Binding Statusmessage}"
+                                  DeleteToolTip="deletebutton">
+                                        <materialDesign:Chip.Icon>
+                                            <Image/>
+                                        </materialDesign:Chip.Icon>
+                                    </materialDesign:Chip>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TreeViewItem>
+            </TreeView>
         </Grid>
         <Grid x:Name="ChatBox" Margin="30" Grid.Row="1" Grid.Column="2"
               Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
@@ -272,10 +314,29 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="LbChat" Height="auto" Width="auto"
-                     Background="White" Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-            </ListBox>
+            <Label DataContext="{Binding SelectedPhone}" Grid.RowSpan="3" Grid.ColumnSpan="3"
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+                <GroupBox
+               Header="{Binding Contactname, UpdateSourceTrigger=PropertyChanged}"
+                Style="{DynamicResource MaterialDesignGroupBox}"
+                 Margin="16"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                    BorderThickness="0" Grid.Row="0"
+           Grid.Column="0"
+           Width="{Binding ElementName=ChatBox, Path=ColumnDefinitions[0].Width}"
+           Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
+                    <TextBlock
+                 Margin="6,6,6,6"
+                     TextWrapping="Wrap"
+                     Text="{Binding Statusmessage, UpdateSourceTrigger=PropertyChanged}"/>
+                </GroupBox>
+            </Label>
         </Grid>
         <Border x:Name="SendMessage" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5" Background="#F2F2EC" >
             <Grid >
@@ -283,7 +344,7 @@
                     <TextBox  x:Name="SendTextBox" Height="70" Width="750"
                                  HorizontalAlignment="Left"
                                  VerticalContentAlignment="Bottom"
-                                  materialDesign:HintAssist.Hint="Send message ...." KeyDown="SendTextBox_KeyDown" 
+                                  materialDesign:HintAssist.Hint="Send message ...." 
                                  />
                     <TextBlock IsHitTestVisible="False">
                         <TextBlock.Style>
