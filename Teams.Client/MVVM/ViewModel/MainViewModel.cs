@@ -13,22 +13,22 @@ namespace Teams.Client.MVVM.ViewModel
 {
 		public class MainViewModel : INotifyPropertyChanged
         {
-            private ContactModel selectedPhone;
+            private ContactModel selectedUser;
 
-            public ObservableCollection<ContactModel> Phones { get; set; }
-            public ContactModel SelectedPhone
+            public ObservableCollection<ContactModel> Users { get; set; }
+            public ContactModel UserSelect
             {
-                get { return selectedPhone; }
+                get { return selectedUser; }
                 set
                 {
-                    selectedPhone = value;
-                    OnPropertyChanged("SelectedPhone");
+                    selectedUser = value;
+                    OnPropertyChanged("UserSelect");
                 }
             }
 
             public MainViewModel()
             {
-                Phones = new ObservableCollection<ContactModel>
+                Users = new ObservableCollection<ContactModel>
             {
                 new ContactModel { Contactname= "Illay",
                     Statusmessage="NewMessage" },

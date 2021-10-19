@@ -286,11 +286,13 @@
                 </materialDesign:TreeViewAssist.AdditionalTemplate>
                 <TreeViewItem
                     Header="General">
-                    <ListBox ItemsSource="{Binding Phones}"
-                 SelectedItem="{Binding SelectedPhone}">
+                    <ListBox ItemsSource="{Binding Users}"
+                 SelectedItem="{Binding UserSelect}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="1">
+                                    
+                                    
                                     <materialDesign:Chip
                                     Content="{Binding Contactname}"
                                 IsDeletable="True"
@@ -320,8 +322,8 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Label DataContext="{Binding SelectedPhone}" Grid.RowSpan="3" Grid.ColumnSpan="3"
-                   HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+            <Label DataContext="{Binding UserSelect}" Grid.RowSpan="3" Grid.ColumnSpan="3"
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom" >
                 <GroupBox
                Header="{Binding Contactname, UpdateSourceTrigger=PropertyChanged}"
                 Style="{DynamicResource MaterialDesignGroupBox}"
@@ -378,7 +380,12 @@
                     <Button VerticalAlignment="Top" >Button 4</Button>
                     <Button VerticalAlignment="Top" >Button 5</Button>
                     <Button VerticalAlignment="Top" >Button 6</Button>
-                    <Button VerticalAlignment="Top"  Margin="50,0,0,0">send</Button>
+                    <Button Margin="100,0,0,0" VerticalAlignment="Top"
+                      Style="{StaticResource MaterialDesignIconForegroundButton}"
+                         Height="30" Width="40">
+                        <materialDesign:PackIcon
+                                 Kind="Send" />
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>
