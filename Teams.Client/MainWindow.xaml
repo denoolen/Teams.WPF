@@ -262,7 +262,7 @@
               Background="#F0F0F0" Margin="10" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
-                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
             </Grid.RowDefinitions>
             <Label VerticalAlignment="Center" 
@@ -274,7 +274,7 @@
                 <materialDesign:TreeViewAssist.AdditionalTemplate>
                     <DataTemplate>
                         <materialDesign:ColorZone
-                    Mode="PrimaryLight"
+                    Mode="Standard"
                     CornerRadius="5">
                             <TextBlock
                           FontSize="12"
@@ -291,13 +291,9 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="1">
-                                    
-                                    
                                     <materialDesign:Chip
                                     Content="{Binding Contactname}"
-                                IsDeletable="True"
-                                  ToolTip="{Binding Statusmessage}"
-                                  DeleteToolTip="deletebutton">
+                                    ToolTip="{Binding Statusmessage}">
                                         <materialDesign:Chip.Icon>
                                             <Image/>
                                         </materialDesign:Chip.Icon>
@@ -308,8 +304,42 @@
                     </ListBox>
                 </TreeViewItem>
             </TreeView>
+            <StackPanel Grid.Row="2" Background="White" Width="175" Height="30" HorizontalAlignment="Center">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="Auto" />
+                        <ColumnDefinition
+                                 Width="*" />
+                        <ColumnDefinition
+                                 Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                  Style="{DynamicResource MaterialDesignToolButton}">
+                        <materialDesign:PackIcon
+              Kind="AccountMultiplePlus"
+              Opacity=".56" />
+                    </Button>
+                    <TextBox
+            Grid.Column="1"
+            Margin="8 0 0 0"
+            materialDesign:HintAssist.Hint="Join or create team"
+            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+            BorderThickness="0"
+            MinWidth="100"
+            VerticalAlignment="Center" />
+                    <Button
+            Style="{DynamicResource MaterialDesignToolButton}"
+            Grid.Column="2">
+                        <materialDesign:PackIcon
+              Kind="CogOutline"
+              Opacity=".56"
+              Margin="8 0 0 0" />
+                    </Button>
+                </Grid>
+            </StackPanel>
         </Grid>
-        <Grid x:Name="ChatBox" Margin="30" Grid.Row="1" Grid.Column="2"
+        <Grid DataContext="{Binding UserSelect}" x:Name="ChatBox" Margin="30" Grid.Row="1" Grid.Column="2"
               Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -321,9 +351,41 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
+            <materialDesign:Card
+                Background="#03a9f4"
+             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                     Padding="0"
+                         Width="200">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                             Height="Auto" />
+                        <RowDefinition
+                           Height="Auto" />
+                        <RowDefinition
+                            Height="Auto" />
+                    </Grid.RowDefinitions>
+                        <TextBlock
+                      Grid.Row="0"
+                          Margin="16 16 16 4"
+                          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                          Text= "{Binding Contactname, UpdateSourceTrigger=PropertyChanged}" />
+                        <Separator
+                          Grid.Row="1"
+                          Style="{StaticResource MaterialDesignLightSeparator}" />
+                        <TextBlock
+                          Grid.Row="2"
+                          Margin="16 0 16 8"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
+                          Style="{StaticResource MaterialDesignBody2TextBlock}"
+                          Text="{Binding Statusmessage, UpdateSourceTrigger=PropertyChanged}" />
+                    </Grid>
+                </materialDesign:Card>
 
-            <Label DataContext="{Binding UserSelect}" Grid.RowSpan="3" Grid.ColumnSpan="3"
+            <Label Grid.RowSpan="3" Grid.ColumnSpan="3"
                    HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                
                 <GroupBox
                Header="{Binding Contactname, UpdateSourceTrigger=PropertyChanged}"
                 Style="{DynamicResource MaterialDesignGroupBox}"
