@@ -4,15 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        xmlns:viewmodel="clr-namespace:Teams.Client.MVVM.ViewModel"
+        xmlns:viewmodel1="clr-namespace:Teams.Client.MVVM.ViewModel"
         mc:Ignorable="d"
         Height="900" Width="1080"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"  >
+   <Window.Resources>
+        <Style x:Key="ButtonHeadStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}">
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="ButtonLeftMenuStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style x:Key="BubbleLeftStyle" TargetType="GroupBox"  >
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style x:Key="BubbleRightStyle" 
+               TargetType="GroupBox" BasedOn="{StaticResource BubbleLeftStyle}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style x:Key="RightBuble" TargetType="materialDesign:Card">
+            <Setter Property="Background" Value="{StaticResource PrimaryHueLightBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryHueLightForegroundBrush}"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="UniformCornerRadius" Value="8"/>
+        </Style>
+
+    </Window.Resources>
     <Window.DataContext>
-        <viewmodel:MainViewModel />
+        <viewmodel1:MainViewModel/>
     </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="95"></ColumnDefinition>
@@ -35,14 +66,10 @@
             <Grid HorizontalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Left">
-                    <Button Margin="5" Width="50" Height="40"                  
-                        Background="{x:Null}"
-                        BorderBrush="{x:Null}" >
+                    <Button Style="{StaticResource ButtonHeadStyle}" >
                         <materialDesign:PackIcon Kind="ChevronLeft" />
                     </Button>
-                    <Button Margin="5" Width="50" 
-                        Background="{x:Null}" 
-                        BorderBrush="{x:Null}"  >
+                    <Button Style="{StaticResource ButtonHeadStyle}"  >
                         <materialDesign:PackIcon Kind="ChevronRight"/>
                     </Button>
                 </StackPanel>
@@ -119,37 +146,28 @@
                 <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
 
-                    <Button x:Name="bUserConnect"
-                          
-                            HorizontalAlignment="Right" Margin="5" Width="50" 
-                         Background="{x:Null}" 
-                         BorderBrush="{x:Null}" >
+                    <Button x:Name="bUserConnect" 
+                            Style="{StaticResource ButtonHeadStyle}"  >
                         <Grid>
                             <materialDesign:PackIcon Kind="AccountCircle" 
                                                  VerticalAlignment="Center" />
-                            <TextBlock x:Name="TBConnect"
+                            <TextBlock
                                     Padding="0 11 0 0" 
                                     FontSize="9"  ></TextBlock>
                         </Grid>
                     </Button>
 
-                    <Button Margin="5" Width="50"
-                        Content="_"
-                         Background="{x:Null}" 
-                        BorderBrush="{x:Null}"
-                           Click="ButtonMinimaze_Click">
+                    <Button Style="{StaticResource ButtonHeadStyle}"
+                        Content="_"                        
+                        Click="ButtonMinimaze_Click">
                     </Button>
-                    <Button Margin="5" Width="50 " 
+                    <Button Style="{StaticResource ButtonHeadStyle}"
                         Content="☐"
-                        Background="{x:Null}" 
-                        BorderBrush="{x:Null}"
-                            Click="WindowStateButton_Click">
+                         Click="WindowStateButton_Click">
                     </Button>
-                    <Button Width="50"
+                    <Button Style="{StaticResource ButtonHeadStyle}"
                         Content="✕"
-                         Background="{x:Null}" 
-                        BorderBrush="{x:Null}"
-                          Click="ButtonShutdown_Click" >
+                        Click="ButtonShutdown_Click" >
                     </Button>
                 </StackPanel>
             </Grid>
@@ -159,20 +177,16 @@
             <Grid>
                 <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top">
-                    <Button  Margin="5" Height="40" 
-                         Background="{x:Null}" 
-                         BorderBrush="{x:Null}" >
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="BellRing" 
-                                                 HorizontalAlignment="Center" />
+                                       HorizontalAlignment="Center" />
                             <TextBlock  HorizontalAlignment="Center" 
                                     Padding="0 20 0 0" 
                                     FontSize="10" >Activity</TextBlock>
                         </Grid>
                     </Button>
-                    <Button Margin="5" Height="40" 
-                        Background="{x:Null}" 
-                        BorderBrush="{x:Null}" >
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="Message"
                                                  HorizontalAlignment="Center" />
@@ -181,9 +195,7 @@
                                    FontSize="10" >Chat</TextBlock>
                         </Grid>
                     </Button>
-                    <Button Margin="5" Height="40"
-                        Background="{x:Null}" 
-                        BorderBrush="{x:Null}">
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="MicrosoftTeams"
                                                  HorizontalAlignment="Center"/>
@@ -192,9 +204,7 @@
                                    FontSize="10">Teams</TextBlock>
                         </Grid>
                     </Button>
-                    <Button Margin="5" Height="40" 
-                        Background="{x:Null}" 
-                        BorderBrush="{x:Null}">
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="42" Height="50">
                             <materialDesign:PackIcon Kind="Calendar" 
                                                  HorizontalAlignment="Center" />
@@ -204,8 +214,7 @@
                                    Grid.RowSpan="2">Calendar</TextBlock>
                         </Grid>
                     </Button >
-                    <Button Margin="5" Height="45" Background="{x:Null}"
-                        BorderBrush="{x:Null}">
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="Phone"
                                                  HorizontalAlignment="Center"/>
@@ -214,9 +223,7 @@
                                    FontSize="10">Calls</TextBlock>
                         </Grid>
                     </Button>
-                    <Button Margin="5" Height="45"
-                        Background="{x:Null}"
-                        BorderBrush="{x:Null}">
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="File"
                                                  HorizontalAlignment="Center"/>
@@ -226,11 +233,10 @@
                         </Grid>
                     </Button>
                 </StackPanel>
+      
                 <StackPanel Orientation="Vertical"
                                 VerticalAlignment="Bottom">
-                    <Button Height="45" 
-                        Background="{x:Null}"
-                        BorderBrush="{x:Null}">
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="Apps" 
                                                  HorizontalAlignment="Center"/>
@@ -239,9 +245,7 @@
                                    FontSize="10">Apps</TextBlock>
                         </Grid>
                     </Button>
-                    <Button Margin="5" Height="45"
-                        Background="{x:Null}"
-                        BorderBrush="{x:Null}">
+                    <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="HelpCircle" 
                                                  HorizontalAlignment="Center"/>
@@ -300,6 +304,8 @@
                     </ListBox>
                 </TreeViewItem>
             </TreeView>
+            
+            
 
             <Grid Grid.Row="2" Background="White" Width="175" Height="30" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -331,19 +337,51 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid DataContext="{Binding UserSelect}" x:Name="ChatBox" Margin="30" Grid.Row="1" Grid.Column="2"
+        <Grid  DataContext="{Binding UserSelect}" Margin="30" Grid.Row="1" Grid.Column="2"
               Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            
+            <ListBox VerticalAlignment="Bottom"
+                         >
+                <GroupBox 
+                       Style="{StaticResource BubbleLeftStyle}" >
+                    <GroupBox.Header>
+
+                        <materialDesign:Chip 
+                            Margin="15"
+                            Content="{Binding Contactname}"/>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <materialDesign:Card
+                                 Background="{DynamicResource PrimaryHueDarkBrush}"
+                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"      
+                                 Padding="8"
+                                 UniformCornerRadius="6">
+                            <TextBlock
+                                TextWrapping="Wrap"
+                                Text="text texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext text" />
+                        </materialDesign:Card>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox 
+                       Style="{StaticResource BubbleRightStyle}"  >
+                    <GroupBox.Header>
+                        <DockPanel LastChildFill="True" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}, Path=ActualWidth}">
+                            <materialDesign:Chip      
+                                HorizontalAlignment="Right"
+                                Margin="15"
+                         Content="Me"/>
+                        </DockPanel>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <materialDesign:Card
+                                Style="{StaticResource RightBuble}">
+                            <TextBlock
+                                TextWrapping="Wrap"
+                                Text="text texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext text"/>
+                        </materialDesign:Card>
+                    </StackPanel>
+                </GroupBox>
+
+            </ListBox>
         </Grid>
         <Grid x:Name="SendMessage" Grid.Row="3" 
               Grid.Column="2" Grid.ColumnSpan="5" 
@@ -368,9 +406,10 @@
                 <Button VerticalAlignment="Top" >Button 6</Button>
                 <Button Margin="100,0,0,0" VerticalAlignment="Top"
                       Style="{StaticResource MaterialDesignIconForegroundButton}"
-                         Height="30" Width="40">
+                         Height="30" Width="40" Click="Button_Click">
                     <materialDesign:PackIcon
-                                 Kind="Send" />
+                                 Kind="Send" 
+                            />
                 </Button>
             </StackPanel>
         </Grid>

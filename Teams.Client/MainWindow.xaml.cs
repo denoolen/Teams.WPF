@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Teams.Client.MVVM.ViewModel;
+using Teams.Client.MVVM.Model;
+using Teams.Client.MVVM;	
 using Teams.Client.ServiceChat;
 
 namespace Teams.Client
@@ -84,6 +85,11 @@ namespace Teams.Client
 				Application.Current.MainWindow.WindowState = WindowState.Normal;
 		}
 
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			
+		}
+
 		//private void ConnectUser(object sender, RoutedEventArgs e)
 		//{
 		//	if (IsConnected)
@@ -111,7 +117,7 @@ namespace Teams.Client
 		//			client.SendMsg(searchTextBox.Text, ID);
 		//			SendTextBox.Text = String.Empty;	
 		//		}
-				
+
 		//	}
 		//}
 	}
