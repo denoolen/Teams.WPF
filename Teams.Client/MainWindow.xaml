@@ -86,40 +86,35 @@
                         </EventTrigger>
                     </Button.Triggers>
                 </Button>-->
-                <StackPanel Background="White" Width="250" Height="30" HorizontalAlignment="Center">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                            Width="Auto" />
-                            <ColumnDefinition
-                                 Width="*" />
-                            <ColumnDefinition
-                                 Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Button
+                <Grid Background="White" Width="250" Height="30" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button
                   Style="{DynamicResource MaterialDesignToolButton}">
-                            <materialDesign:PackIcon
-              Kind="Search"
-              Opacity=".56" />
-                        </Button>
-                        <TextBox
-            Grid.Column="1"
-            Margin="8 0 0 0"
-            materialDesign:HintAssist.Hint="Search somthing..."
-            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-            BorderThickness="0"
-            MinWidth="200"
-            VerticalAlignment="Center" />
-                        <Button
-            Style="{DynamicResource MaterialDesignToolButton}"
-            Grid.Column="2">
-                            <materialDesign:PackIcon
-              Kind="Microphone"
-              Opacity=".56"
-              Margin="8 0 0 0" />
-                        </Button>
-                    </Grid>
-                </StackPanel>
+                                <materialDesign:PackIcon
+                      Kind="Search"
+                      Opacity=".56" />
+                            </Button>
+                    <TextBox
+                        Grid.Column="1"
+                        Margin="8 0 0 0"
+                        materialDesign:HintAssist.Hint="Search somthing..."
+                        materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                        BorderThickness="0"
+                        MinWidth="200"
+                        VerticalAlignment="Center" />
+                    <Button
+                        Style="{DynamicResource MaterialDesignToolButton}"
+                        Grid.Column="2">
+                        <materialDesign:PackIcon
+                          Kind="Microphone"
+                          Opacity=".56"
+                          Margin="8 0 0 0" />
+                    </Button>
+                        </Grid>
 
                 <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
@@ -271,6 +266,7 @@
                    FontSize="16">
                 Team</Label>
             <TreeView Grid.Row="1" Margin="5">
+
                 <materialDesign:TreeViewAssist.AdditionalTemplate>
                     <DataTemplate>
                         <materialDesign:ColorZone
@@ -287,15 +283,15 @@
                 <TreeViewItem
                     Header="General">
                     <ListBox ItemsSource="{Binding Users}"
-                 SelectedItem="{Binding UserSelect}">
+                         SelectedItem="{Binding UserSelect}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="1">
                                     <materialDesign:Chip
                                     Content="{Binding Contactname}"
-                                    ToolTip="{Binding Statusmessage}">
+                                    ToolTip="{Binding Statusmessage}" >
                                         <materialDesign:Chip.Icon>
-                                            <Image/>
+                                        <Image/>
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
                                 </StackPanel>
@@ -304,40 +300,36 @@
                     </ListBox>
                 </TreeViewItem>
             </TreeView>
-            <StackPanel Grid.Row="2" Background="White" Width="175" Height="30" HorizontalAlignment="Center">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                                 Width="*" />
-                        <ColumnDefinition
-                                 Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Button
+
+            <Grid Grid.Row="2" Background="White" Width="175" Height="30" HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button
                   Style="{DynamicResource MaterialDesignToolButton}">
-                        <materialDesign:PackIcon
+                    <materialDesign:PackIcon
               Kind="AccountMultiplePlus"
               Opacity=".56" />
-                    </Button>
-                    <TextBox
-            Grid.Column="1"
-            Margin="8 0 0 0"
-            materialDesign:HintAssist.Hint="Join or create team"
-            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-            BorderThickness="0"
-            MinWidth="100"
-            VerticalAlignment="Center" />
-                    <Button
-            Style="{DynamicResource MaterialDesignToolButton}"
-            Grid.Column="2">
-                        <materialDesign:PackIcon
-              Kind="CogOutline"
-              Opacity=".56"
-              Margin="8 0 0 0" />
-                    </Button>
-                </Grid>
-            </StackPanel>
+                </Button>
+                <TextBox
+                    Grid.Column="1"
+                    Margin="8 0 0 0"
+                    materialDesign:HintAssist.Hint="Join or create team"
+                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                    BorderThickness="0"
+                    MinWidth="100"
+                    VerticalAlignment="Center" />
+                <Button
+                    Style="{DynamicResource MaterialDesignToolButton}"
+                    Grid.Column="2">
+                    <materialDesign:PackIcon
+                      Kind="CogOutline"
+                      Opacity=".56"
+                      Margin="8 0 0 0" />
+                </Button>
+            </Grid>
         </Grid>
         <Grid DataContext="{Binding UserSelect}" x:Name="ChatBox" Margin="30" Grid.Row="1" Grid.Column="2"
               Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
@@ -351,105 +343,36 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <materialDesign:Card
-                Background="#03a9f4"
-             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
-                     Padding="0"
-                         Width="200">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition
-                             Height="Auto" />
-                        <RowDefinition
-                           Height="Auto" />
-                        <RowDefinition
-                            Height="Auto" />
-                    </Grid.RowDefinitions>
-                        <TextBlock
-                      Grid.Row="0"
-                          Margin="16 16 16 4"
-                          Style="{StaticResource MaterialDesignHeadline5TextBlock}"
-                          Text= "{Binding Contactname, UpdateSourceTrigger=PropertyChanged}" />
-                        <Separator
-                          Grid.Row="1"
-                          Style="{StaticResource MaterialDesignLightSeparator}" />
-                        <TextBlock
-                          Grid.Row="2"
-                          Margin="16 0 16 8"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Left"
-                          Style="{StaticResource MaterialDesignBody2TextBlock}"
-                          Text="{Binding Statusmessage, UpdateSourceTrigger=PropertyChanged}" />
-                    </Grid>
-                </materialDesign:Card>
-
-            <Label Grid.RowSpan="3" Grid.ColumnSpan="3"
-                   HorizontalAlignment="Right" VerticalAlignment="Bottom" >
-                
-                <GroupBox
-               Header="{Binding Contactname, UpdateSourceTrigger=PropertyChanged}"
-                Style="{DynamicResource MaterialDesignGroupBox}"
-                 Margin="16"
-                    materialDesign:ShadowAssist.ShadowDepth="Depth3"
-                    BorderThickness="0" Grid.Row="0"
-           Grid.Column="0"
-           Width="{Binding ElementName=ChatBox, Path=ColumnDefinitions[0].Width}"
-           Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}">
-                    <TextBlock
-                 Margin="6,6,6,6"
-                     TextWrapping="Wrap"
-                     Text="{Binding Statusmessage, UpdateSourceTrigger=PropertyChanged}"/>
-                </GroupBox>
-            </Label>
+            
         </Grid>
-        <Border x:Name="SendMessage" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5" Background="#F2F2EC" >
-            <Grid >
-                <StackPanel Background="White" Margin="15">
-                    <TextBox  x:Name="SendTextBox" Height="70" Width="750"
-                                 HorizontalAlignment="Left"
-                                 VerticalContentAlignment="Bottom"
-                                  materialDesign:HintAssist.Hint="Send message ...." 
-                                 />
-                    <TextBlock IsHitTestVisible="False">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                                <Setter Property="Foreground" Value="Black"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName=SendTextBox}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </StackPanel>
-                <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBox  Margin="5" Width="550"
-                          Background="White" Height="60" 
-                          materialDesign:HintAssist.Hint="Send message" 
-                          Style="{StaticResource MaterialDesignFloatingHintTextBox}" Cursor="IBeam"/>
-            </StackPanel>-->
+        <Grid x:Name="SendMessage" Grid.Row="3" 
+              Grid.Column="2" Grid.ColumnSpan="5" 
+              Background="#F2F2EC">
 
-            </Grid>
-        </Border>
-        <Border Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Background="#F5F5F5" >
-            <Grid >
-                <StackPanel Orientation="Horizontal" Margin="120,0,0,0">
-                    <Button VerticalAlignment="Top">1</Button>
-                    <Button VerticalAlignment="Top" >2</Button>
-                    <Button VerticalAlignment="Top">Button3</Button>
-                    <Button VerticalAlignment="Top" >Button 4</Button>
-                    <Button VerticalAlignment="Top" >Button 5</Button>
-                    <Button VerticalAlignment="Top" >Button 6</Button>
-                    <Button Margin="100,0,0,0" VerticalAlignment="Top"
+            <TextBox Margin="20" Background="White"
+                  TextWrapping="Wrap"
+                  VerticalAlignment="Stretch"
+                  AcceptsReturn="True"
+                  VerticalScrollBarVisibility="Auto"
+                  SpellCheck.IsEnabled="True"
+                  materialDesign:HintAssist.Hint="Send Message" />
+
+        </Grid>
+        <Grid Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Background="#F5F5F5">
+            <StackPanel Orientation="Horizontal" Margin="120,0,0,0">
+                <Button VerticalAlignment="Top">1</Button>
+                <Button VerticalAlignment="Top" >2</Button>
+                <Button VerticalAlignment="Top">Button3</Button>
+                <Button VerticalAlignment="Top" >Button 4</Button>
+                <Button VerticalAlignment="Top" >Button 5</Button>
+                <Button VerticalAlignment="Top" >Button 6</Button>
+                <Button Margin="100,0,0,0" VerticalAlignment="Top"
                       Style="{StaticResource MaterialDesignIconForegroundButton}"
                          Height="30" Width="40">
-                        <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                                  Kind="Send" />
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </Border>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
