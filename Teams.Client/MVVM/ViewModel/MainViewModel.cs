@@ -31,9 +31,9 @@ namespace Teams.Client.MVVM.ViewModel
             Users = new ObservableCollection<ContactModel>
             {
                 new ContactModel { Contactname= "Illay",
-                    Statusmessage="NewMessage" },
+                    Statusmessage="NewMessage" , MSG = " hello my dear friend how are you? "},
                 new ContactModel {Contactname="Hanna",
-                    Statusmessage="hello . .. . . ." },
+                    Statusmessage="hello . .. . . .", MSG = "I have a question when can we meet? " },
                 new ContactModel {Contactname="Elli",
                     Statusmessage="Hi my dear"},
                 new ContactModel {Contactname="Max",

@@ -23,8 +23,12 @@
             <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
+        <Style x:Key="TextBlockLeftMenuStyle" TargetType="TextBlock"  BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+            <Setter Property="Padding" Value="0 20 0 0"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
         <Style x:Key="BubbleLeftStyle" TargetType="GroupBox"  >
-            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Margin" Value="10"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
@@ -35,8 +39,8 @@
         <Style x:Key="RightBuble" TargetType="materialDesign:Card">
             <Setter Property="Background" Value="{StaticResource PrimaryHueLightBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource PrimaryHueLightForegroundBrush}"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="UniformCornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="UniformCornerRadius" Value="5"/>
         </Style>
 
     </Window.Resources>
@@ -181,8 +185,7 @@
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="BellRing" 
                                        HorizontalAlignment="Center" />
-                            <TextBlock  HorizontalAlignment="Center" 
-                                    Padding="0 20 0 0" 
+                            <TextBlock  Style="{StaticResource TextBlockLeftMenuStyle}"
                                     FontSize="10" >Activity</TextBlock>
                         </Grid>
                     </Button>
@@ -190,8 +193,7 @@
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="Message"
                                                  HorizontalAlignment="Center" />
-                            <TextBlock TextAlignment="Center" 
-                                   Padding="0 20 0 0"
+                            <TextBlock  Style="{StaticResource TextBlockLeftMenuStyle}"
                                    FontSize="10" >Chat</TextBlock>
                         </Grid>
                     </Button>
@@ -199,8 +201,7 @@
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="MicrosoftTeams"
                                                  HorizontalAlignment="Center"/>
-                            <TextBlock TextAlignment="Center" 
-                                   Padding="0 20 0 0" 
+                            <TextBlock Style="{StaticResource TextBlockLeftMenuStyle}"
                                    FontSize="10">Teams</TextBlock>
                         </Grid>
                     </Button>
@@ -208,18 +209,15 @@
                         <Grid Width="42" Height="50">
                             <materialDesign:PackIcon Kind="Calendar" 
                                                  HorizontalAlignment="Center" />
-                            <TextBlock TextAlignment="Center"
-                                   Padding="0 20 0 0"
-                                   FontSize="10"
-                                   Grid.RowSpan="2">Calendar</TextBlock>
+                            <TextBlock Style="{StaticResource TextBlockLeftMenuStyle}"
+                                   FontSize="10">Calendar</TextBlock>
                         </Grid>
                     </Button >
                     <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="Phone"
                                                  HorizontalAlignment="Center"/>
-                            <TextBlock TextAlignment="Center" 
-                                   Padding="0 20 0 0"
+                            <TextBlock Style="{StaticResource TextBlockLeftMenuStyle}"
                                    FontSize="10">Calls</TextBlock>
                         </Grid>
                     </Button>
@@ -227,8 +225,7 @@
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="File"
                                                  HorizontalAlignment="Center"/>
-                            <TextBlock TextAlignment="Center"
-                                   Padding="0 20 0 0" 
+                            <TextBlock Style="{StaticResource TextBlockLeftMenuStyle}"
                                    FontSize="10">Files</TextBlock>
                         </Grid>
                     </Button>
@@ -240,8 +237,7 @@
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="Apps" 
                                                  HorizontalAlignment="Center"/>
-                            <TextBlock TextAlignment="Center"
-                                   Padding="0 20 0 0"
+                            <TextBlock Style="{StaticResource TextBlockLeftMenuStyle}"
                                    FontSize="10">Apps</TextBlock>
                         </Grid>
                     </Button>
@@ -249,8 +245,7 @@
                         <Grid Width="40" Height="50">
                             <materialDesign:PackIcon Kind="HelpCircle" 
                                                  HorizontalAlignment="Center"/>
-                            <TextBlock TextAlignment="Center" 
-                                   Padding="0 20 0 0" 
+                            <TextBlock Style="{StaticResource TextBlockLeftMenuStyle}"
                                    FontSize="10">Help</TextBlock>
                         </Grid>
                     </Button>
@@ -339,47 +334,50 @@
         </Grid>
         <Grid  DataContext="{Binding UserSelect}" Margin="30" Grid.Row="1" Grid.Column="2"
               Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
-            <ListBox VerticalAlignment="Bottom"
+            <ListBox Margin="10" VerticalAlignment="Bottom"
                          >
+                <GroupBox
+                       Style="{StaticResource BubbleRightStyle}"  >
+                    <GroupBox.Header>
+                        <DockPanel
+                             LastChildFill="True" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}, Path=ActualWidth}">
+                            <materialDesign:Chip      
+                                HorizontalAlignment="Right"
+                                Margin="10"
+                         Content="Me"/>
+                        </DockPanel>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <materialDesign:Card
+                               Margin="15"
+                                Style="{StaticResource RightBuble}">
+                            <TextBlock
+                                TextWrapping="Wrap"
+                                Text="my answer text"/>
+                        </materialDesign:Card>
+                    </StackPanel>
+                </GroupBox>
                 <GroupBox 
                        Style="{StaticResource BubbleLeftStyle}" >
                     <GroupBox.Header>
 
                         <materialDesign:Chip 
-                            Margin="15"
+                            Margin="10"
                             Content="{Binding Contactname}"/>
                     </GroupBox.Header>
                     <StackPanel>
                         <materialDesign:Card
                                  Background="{DynamicResource PrimaryHueDarkBrush}"
                                  Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"      
-                                 Padding="8"
+                                 Padding="6"
                                  UniformCornerRadius="6">
                             <TextBlock
                                 TextWrapping="Wrap"
-                                Text="text texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext text" />
+                                Text="{Binding MSG}"/>
                         </materialDesign:Card>
                     </StackPanel>
                 </GroupBox>
-                <GroupBox 
-                       Style="{StaticResource BubbleRightStyle}"  >
-                    <GroupBox.Header>
-                        <DockPanel LastChildFill="True" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}, Path=ActualWidth}">
-                            <materialDesign:Chip      
-                                HorizontalAlignment="Right"
-                                Margin="15"
-                         Content="Me"/>
-                        </DockPanel>
-                    </GroupBox.Header>
-                    <StackPanel>
-                        <materialDesign:Card
-                                Style="{StaticResource RightBuble}">
-                            <TextBlock
-                                TextWrapping="Wrap"
-                                Text="text texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext texttext text"/>
-                        </materialDesign:Card>
-                    </StackPanel>
-                </GroupBox>
+              
 
             </ListBox>
         </Grid>

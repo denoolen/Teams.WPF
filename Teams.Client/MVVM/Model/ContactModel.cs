@@ -15,9 +15,10 @@ namespace Teams.Client.MVVM.Model
 
 	        private string ContactName;
             private string StatusMessage;
-           
+            private string Message;
 
-            public string Contactname
+
+        public string Contactname
             {
                 get { return ContactName; }
                 set
@@ -36,7 +37,17 @@ namespace Teams.Client.MVVM.Model
                 }
             }
 
-            public event PropertyChangedEventHandler PropertyChanged;
+        public string MSG
+        {
+            get { return Message; }
+            set
+            {
+                Message = value;
+                OnPropertyChanged("MSG");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
             public void OnPropertyChanged([CallerMemberName] string prop = "")
             {
                 if (PropertyChanged != null)
