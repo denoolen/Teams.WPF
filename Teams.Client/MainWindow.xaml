@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:viewmodel1="clr-namespace:Teams.Client.MVVM.ViewModel"
+        xmlns:local="clr-namespace:Teams.Client"
         mc:Ignorable="d"
         Height="900" Width="1080"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"  >
-   <Window.Resources>
+    <Window.DataContext>
+        <viewmodel1:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
         <Style x:Key="ButtonHeadStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}">
             <Setter Property="Width" Value="50"/>
             <Setter Property="Background" Value="{x:Null}"/>
@@ -27,26 +31,9 @@
             <Setter Property="Padding" Value="0 20 0 0"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
-        <Style x:Key="BubbleLeftStyle" TargetType="GroupBox"  >
-            <Setter Property="Margin" Value="10"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-        <Style x:Key="BubbleRightStyle" 
-               TargetType="GroupBox" BasedOn="{StaticResource BubbleLeftStyle}">
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-        </Style>
-        <Style x:Key="RightBuble" TargetType="materialDesign:Card">
-            <Setter Property="Background" Value="{StaticResource PrimaryHueLightBrush}"/>
-            <Setter Property="Foreground" Value="{StaticResource PrimaryHueLightForegroundBrush}"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="UniformCornerRadius" Value="5"/>
-        </Style>
-
+    
     </Window.Resources>
-    <Window.DataContext>
-        <viewmodel1:MainViewModel/>
-    </Window.DataContext>
+ 
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -125,10 +112,10 @@
                     </Grid.ColumnDefinitions>
                     <Button
                   Style="{DynamicResource MaterialDesignToolButton}">
-                                <materialDesign:PackIcon
+                        <materialDesign:PackIcon
                       Kind="Search"
                       Opacity=".56" />
-                            </Button>
+                    </Button>
                     <TextBox
                         Grid.Column="1"
                         Margin="8 0 0 0"
@@ -145,7 +132,7 @@
                           Opacity=".56"
                           Margin="8 0 0 0" />
                     </Button>
-                        </Grid>
+                </Grid>
 
                 <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">
@@ -230,7 +217,7 @@
                         </Grid>
                     </Button>
                 </StackPanel>
-      
+
                 <StackPanel Orientation="Vertical"
                                 VerticalAlignment="Bottom">
                     <Button Style="{StaticResource ButtonLeftMenuStyle}">
@@ -290,7 +277,7 @@
                                     Content="{Binding Contactname}"
                                     ToolTip="{Binding Statusmessage}" >
                                         <materialDesign:Chip.Icon>
-                                        <Image/>
+                                            <Image/>
                                         </materialDesign:Chip.Icon>
                                     </materialDesign:Chip>
                                 </StackPanel>
@@ -299,8 +286,8 @@
                     </ListBox>
                 </TreeViewItem>
             </TreeView>
-            
-            
+
+
 
             <Grid Grid.Row="2" Background="White" Width="175" Height="30" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -332,55 +319,13 @@
                 </Button>
             </Grid>
         </Grid>
-        <Grid  DataContext="{Binding UserSelect}" Margin="30" Grid.Row="1" Grid.Column="2"
-              Grid.RowSpan="2" Grid.ColumnSpan="6" Background="#F5F5F5" >
-            <ListBox Margin="10" VerticalAlignment="Bottom"
-                         >
-                <GroupBox
-                       Style="{StaticResource BubbleRightStyle}"  >
-                    <GroupBox.Header>
-                        <DockPanel
-                             LastChildFill="True" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type GroupBox}}, Path=ActualWidth}">
-                            <materialDesign:Chip      
-                                HorizontalAlignment="Right"
-                                Margin="10"
-                         Content="Me"/>
-                        </DockPanel>
-                    </GroupBox.Header>
-                    <StackPanel>
-                        <materialDesign:Card
-                               Margin="15"
-                                Style="{StaticResource RightBuble}">
-                            <TextBlock
-                                TextWrapping="Wrap"
-                                Text="my answer text"/>
-                        </materialDesign:Card>
-                    </StackPanel>
-                </GroupBox>
-                <GroupBox 
-                       Style="{StaticResource BubbleLeftStyle}" >
-                    <GroupBox.Header>
-
-                        <materialDesign:Chip 
-                            Margin="10"
-                            Content="{Binding Contactname}"/>
-                    </GroupBox.Header>
-                    <StackPanel>
-                        <materialDesign:Card
-                                 Background="{DynamicResource PrimaryHueDarkBrush}"
-                                 Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"      
-                                 Padding="6"
-                                 UniformCornerRadius="6">
-                            <TextBlock
-                                TextWrapping="Wrap"
-                                Text="{Binding MSG}"/>
-                        </materialDesign:Card>
-                    </StackPanel>
-                </GroupBox>
-              
-
+        <StackPanel Margin="30" Grid.Row="1" Grid.Column="2"
+              Grid.RowSpan="2" VerticalAlignment="Bottom"  Grid.ColumnSpan="6" Background="#F5F5F5" >
+            <ListBox HorizontalAlignment="Stretch">
+                <local:LeftBubble></local:LeftBubble>
+                <local:RightBubble></local:RightBubble>
             </ListBox>
-        </Grid>
+        </StackPanel>
         <Grid x:Name="SendMessage" Grid.Row="3" 
               Grid.Column="2" Grid.ColumnSpan="5" 
               Background="#F2F2EC">
