@@ -12,7 +12,8 @@
     </UserControl.DataContext>
     <Grid DataContext="{Binding UserSelect}" >
 
-        <Border  Background="{StaticResource PrimaryHueDarkBrush}" CornerRadius="15 15 15 0" Margin="10 12">
+        <Border  Background="{StaticResource PrimaryHueDarkBrush}" CornerRadius="15 15 15 0" Margin="10 12"
+                 HorizontalAlignment="Left">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -24,6 +25,6 @@
                        Text="Hello world" Foreground="White"/>
             </Grid>
         </Border>
-        <TextBlock Text="Thursday 5 pm:45" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Margin="10 -2"/>
+        <Label x:Name="Date" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="10" Margin="10 -2"/>
     </Grid>
 </UserControl>

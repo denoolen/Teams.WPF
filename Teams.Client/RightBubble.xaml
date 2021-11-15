@@ -11,10 +11,10 @@
         <viewmodel1:MainViewModel/>
     </UserControl.DataContext>
     <Grid DataContext="{Binding UserSelect}">
-        <Border Background="Gray" CornerRadius="15 15 0 15" Margin="10 12">
-            <TextBlock Margin="10" Grid.Column="1" TextWrapping="Wrap" 
-                       Text="Hello world, need more lern wpf and C#" Foreground="White"/>
-        </Border>
-        <TextBlock Text="Thursday 5 pm:55" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Margin="10 -2"/>
+        <Border Background="Gray" CornerRadius="15 15 0 15" Margin="10 12" HorizontalAlignment="Right">
+                <TextBlock HorizontalAlignment="Right" Margin="10" Grid.Column="1" TextWrapping="Wrap" 
+                       Text="Hello world" Foreground="White"/>
+            </Border>
+        <TextBlock x:Name="Date" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="10" Margin="10 -2"/>
     </Grid>
 </UserControl>

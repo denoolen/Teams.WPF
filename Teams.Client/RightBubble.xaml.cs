@@ -23,6 +23,7 @@ namespace Teams.Client
 		public RightBubble()
 		{
 			InitializeComponent();
+			Date.Text = DateTime.Now.ToString();
 		}
 	}
 }

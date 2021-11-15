@@ -6,17 +6,16 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Teams.Client.MVVM.Model
 {
 	public class ContactModel : INotifyPropertyChanged
 	{
-	
-
 	        private string ContactName;
             private string StatusMessage;
             private string Message;
-
+        
 
         public string Contactname
             {
@@ -50,9 +49,8 @@ namespace Teams.Client.MVVM.Model
         public event PropertyChangedEventHandler PropertyChanged;
             public void OnPropertyChanged([CallerMemberName] string prop = "")
             {
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+		    }
         }
 
     }

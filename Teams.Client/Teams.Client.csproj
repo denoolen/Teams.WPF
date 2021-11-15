@@ -74,6 +74,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ActionCommand.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="LeftBubble.xaml.cs">
       <DependentUpon>LeftBubble.xaml</DependentUpon>
     </Compile>

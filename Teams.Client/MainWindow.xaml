@@ -31,7 +31,7 @@
             <Setter Property="Padding" Value="0 20 0 0"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
-    
+     
     </Window.Resources>
  
 
@@ -158,7 +158,8 @@
                     </Button>
                     <Button Style="{StaticResource ButtonHeadStyle}"
                         Content="✕"
-                        Click="ButtonShutdown_Click" >
+                            Command="{Binding CloseApplicationCommand}" Cursor="Hand"
+                        >
                     </Button>
                 </StackPanel>
             </Grid>
@@ -321,10 +322,8 @@
         </Grid>
         <StackPanel Margin="30" Grid.Row="1" Grid.Column="2"
               Grid.RowSpan="2" VerticalAlignment="Bottom"  Grid.ColumnSpan="6" Background="#F5F5F5" >
-            <ListBox HorizontalAlignment="Stretch">
-                <local:LeftBubble></local:LeftBubble>
-                <local:RightBubble></local:RightBubble>
-            </ListBox>
+            <local:LeftBubble></local:LeftBubble>
+            <local:RightBubble></local:RightBubble>
         </StackPanel>
         <Grid x:Name="SendMessage" Grid.Row="3" 
               Grid.Column="2" Grid.ColumnSpan="5" 
@@ -349,7 +348,7 @@
                 <Button VerticalAlignment="Top" >Button 6</Button>
                 <Button Margin="100,0,0,0" VerticalAlignment="Top"
                       Style="{StaticResource MaterialDesignIconForegroundButton}"
-                         Height="30" Width="40" Click="Button_Click">
+                         Height="30" Width="40" Click="Button_Click" Cursor="Hand">
                     <materialDesign:PackIcon
                                  Kind="Send" 
                             />

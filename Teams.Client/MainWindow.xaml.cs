@@ -71,11 +71,6 @@ namespace Teams.Client
 			Application.Current.MainWindow.WindowState = WindowState.Minimized;
 		}
 
-		private void ButtonShutdown_Click(object sender, RoutedEventArgs e)
-		{
-			//DisconnectUser();
-			Application.Current.Shutdown();
-		}
 
 		private void WindowStateButton_Click(object sender, RoutedEventArgs e)
 		{
