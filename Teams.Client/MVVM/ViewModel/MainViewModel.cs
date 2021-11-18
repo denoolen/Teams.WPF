@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -8,58 +9,63 @@ using Teams.Client.MVVM.Model;
 
 namespace Teams.Client.MVVM.ViewModel
 {
-	public class MainViewModel : ContactModel
+	public class MainViewModel : MessageModel
 	{
-		public ICommand CloseApplicationCommand
-		{
-			get;
-		}
-		private void OnCloseApplicationCommandExecuted(object p)
-		{
-			Application.Current.Shutdown();
-		}
-		private bool CanCloseApplicationCommandExecuted(object p)
-		{
-			return true;
-		}
 
-		private ContactModel selectedUser;
+		public ICommand SendCommand { get; set; }
 
-		public ObservableCollection<ContactModel> Users { get; set; }
-		public ContactModel UserSelect
-		{
-			get { return selectedUser; }
-			set
-			{
-				selectedUser = value;
-				OnPropertyChanged("UserSelect");
-			}
-		}
+		public ObservableCollection<ViewModelBase> Users { get; set; }
+
 
 		public MainViewModel()
 		{
-			
-
-			Users = new ObservableCollection<ContactModel>
+			Users = new ObservableCollection<ViewModelBase>
 			{
-				new ContactModel { Contactname= "Illay",
-					Statusmessage="NewMessage" , MSG = " hello my dear friend how are you? "},
-				new ContactModel {Contactname="Hanna",
-					Statusmessage="hello . .. . . .", MSG = "I have a question when can we meet? " },
-				new ContactModel {Contactname="Elli",
-					Statusmessage="Hi my dear"},
-				new ContactModel {Contactname="Max",
-					Statusmessage="qq ....... awdawdw" }
+				new MessageModel  {
+					IsSending = true,
+					Contactname= "Iam",
+					Statusmessage= " from " ,
+					UserMessage = " hello my dear friend how are you? ",
+					MessagefromUser = "Все нормально" ,
+					StartDate = DateTime.Now,  },
+				new MessageModel {
+					IsSending= true,
+					Contactname="Iam",
+					Statusmessage="Recive . .. . . .",
+					UserMessage = "I have a question when can we meet? ",
+					MessagefromUser = "Какой блэт вопрос?",
+				},
+				new MessageModel {
+					IsSending = false,
+					Contactname="Friend",
+					Statusmessage="Hi my dear",
+					UserMessage = " hello my dear friend how are you? ",
+					MessagefromUser = "Все нормально" ,
+													},
+				new MessageModel {
+					IsSending = false,
+					Contactname="Friend",
+					Statusmessage="qq ....... awdawdw",
+					UserMessage = " hello my dear friend how are you? ",
+					MessagefromUser = "Все нормально"}
 			};
+
 			CloseApplicationCommand = new ActionCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecuted);
 
+			SendCommand = new ActionCommand(o =>
+			{
+				Users.Add(new MessageModel
+				{
+					UserMessage = UserMessage,
+					IsSending = true
+				});
+			});
 		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-		public void OnPropertyChanged([CallerMemberName] string prop = "")
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-		}
+		
+		public ICommand CloseApplicationCommand { get; }
+		private void OnCloseApplicationCommandExecuted(object p)
+		{ Application.Current.Shutdown(); }
+		private bool CanCloseApplicationCommandExecuted(object p) { return true; }
 
 	}
 

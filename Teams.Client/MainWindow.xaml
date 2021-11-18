@@ -11,9 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"  >
-    <Window.DataContext>
-        <viewmodel1:MainViewModel/>
-    </Window.DataContext>
+ 
     <Window.Resources>
         <Style x:Key="ButtonHeadStyle" TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatDarkBgButton}">
             <Setter Property="Width" Value="50"/>
@@ -31,9 +29,35 @@
             <Setter Property="Padding" Value="0 20 0 0"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
-     
+        <Style x:Key="MessageStyle" TargetType="Border">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="TextBlock.Foreground" Value="White"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
+            <Setter Property="Background" Value="Black"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path= IsSending}" Value="True">
+                    <Setter Property="TextBlock.TextAlignment" Value="Right"/>
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="Background" Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MessageContainerStyle" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+        <Style x:Key="MessageUsername" TargetType="TextBlock">
+            <Setter Property="Visibility" Value="Visible" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsSending}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
- 
+    <Window.DataContext>
+        <viewmodel1:MainViewModel/>
+    </Window.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -269,8 +293,7 @@
                 </materialDesign:TreeViewAssist.AdditionalTemplate>
                 <TreeViewItem
                     Header="General">
-                    <ListBox ItemsSource="{Binding Users}"
-                         SelectedItem="{Binding UserSelect}">
+                    <ListBox ItemsSource="{Binding Users}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="1">
@@ -320,22 +343,75 @@
                 </Button>
             </Grid>
         </Grid>
-        <StackPanel Margin="30" Grid.Row="1" Grid.Column="2"
+        <Grid Margin="30" Grid.Row="1" Grid.Column="2"
               Grid.RowSpan="2" VerticalAlignment="Bottom"  Grid.ColumnSpan="6" Background="#F5F5F5" >
-            <local:LeftBubble></local:LeftBubble>
-            <local:RightBubble></local:RightBubble>
-        </StackPanel>
+            <ListBox 
+                 x:Name="MessageList" 
+                 ItemsSource="{Binding Users}" 
+                 ItemContainerStyle="{StaticResource MessageContainerStyle}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type viewmodel1:MainViewModel}">
+                        <Border CornerRadius="10" Style="{StaticResource MessageStyle}" Grid.Column="1" >
+                            <Grid ShowGridLines="False">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="10" Orientation="Vertical">
+                                    <TextBlock Text="{Binding Path=Contactname}"
+                                                Style="{StaticResource MessageUsername}"/>
+                                        <TextBlock Text="{Binding UserMessage}"/>
+                                        <TextBlock Text="{Binding StartDate}"/>
+                                    </StackPanel>
+                             </Grid>
+                        </Border>
+                    </DataTemplate>
+            </ListBox.ItemTemplate>
+            </ListBox>
+            <!--<ListBox ItemsSource="{Binding Users}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="border" Background="{StaticResource PrimaryHueDarkBrush}" CornerRadius="15 15 15 0" Margin="10 12" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Margin="10" Grid.Column="0" TextWrapping="Wrap" 
+                                          Text="{Binding Contactname}" Foreground="White"/>
+                                <TextBlock Margin="10" Grid.Column="1" TextWrapping="Wrap" 
+                                      Text="{Binding CustomMessage}" Foreground="White"/>
+                               
+                            </Grid>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding UserMessage}">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Yellow"/>
+                                <Setter TargetName="border" Property="HorizontalAlignment" Value="Right"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                        
+                        </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>-->
+        </Grid>
         <Grid x:Name="SendMessage" Grid.Row="3" 
               Grid.Column="2" Grid.ColumnSpan="5" 
               Background="#F2F2EC">
 
-            <TextBox Margin="20" Background="White"
+            <TextBox  Margin="20" Background="White"
                   TextWrapping="Wrap"
                   VerticalAlignment="Stretch"
                   AcceptsReturn="True"
                   VerticalScrollBarVisibility="Auto"
                   SpellCheck.IsEnabled="True"
-                  materialDesign:HintAssist.Hint="Send Message" />
+                  materialDesign:HintAssist.Hint="Send Message" Cursor="IBeam" 
+                  Text="{Binding UserMessage , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding SendCommand}" Key="Return"/>
+                </TextBox.InputBindings>
+            </TextBox>
 
         </Grid>
         <Grid Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Background="#F5F5F5">
@@ -347,6 +423,7 @@
                 <Button VerticalAlignment="Top" >Button 5</Button>
                 <Button VerticalAlignment="Top" >Button 6</Button>
                 <Button Margin="100,0,0,0" VerticalAlignment="Top"
+                        Command="{Binding SendCommand}"
                       Style="{StaticResource MaterialDesignIconForegroundButton}"
                          Height="30" Width="40" Click="Button_Click" Cursor="Hand">
                     <materialDesign:PackIcon

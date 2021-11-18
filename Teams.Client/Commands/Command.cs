@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Teams.Client.Commands
 {
-	internal abstract class Command : ICommand
+	public abstract class Command : ICommand
 	{
 		public event EventHandler CanExecuteChanged
 		{

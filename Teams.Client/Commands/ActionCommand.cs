@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Teams.Client.Commands
 {
-	internal class ActionCommand : Command
+	public class ActionCommand : Command
 	{
 		private readonly Action<object> _Execute;
 		private readonly Func<object, bool> _CanExecute;
