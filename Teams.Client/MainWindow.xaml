@@ -29,16 +29,17 @@
             <Setter Property="Padding" Value="0 20 0 0"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
-        <Style x:Key="MessageStyle" TargetType="Border">
+        <Style x:Key="MessageStyle" TargetType="Border" BasedOn="{StaticResource MaterialDesignToolBarMainPanelBorderStyle}">
+            <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="TextBlock.Foreground" Value="White"/>
             <Setter Property="TextBlock.TextAlignment" Value="Left"/>
-            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Background" Value="#9a67ea"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path= IsSending}" Value="True">
                     <Setter Property="TextBlock.TextAlignment" Value="Right"/>
                     <Setter Property="HorizontalAlignment" Value="Right"/>
-                    <Setter Property="Background" Value="Red"/>
+                    <Setter Property="Background" Value="#4ba3c7"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -311,8 +312,6 @@
                 </TreeViewItem>
             </TreeView>
 
-
-
             <Grid Grid.Row="2" Background="White" Width="175" Height="30" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -351,50 +350,26 @@
                  ItemContainerStyle="{StaticResource MessageContainerStyle}">
                 <ListBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type viewmodel1:MainViewModel}">
-                        <Border CornerRadius="10" Style="{StaticResource MessageStyle}" Grid.Column="1" >
+                        <Border Style="{StaticResource MessageStyle}" >
                             <Grid ShowGridLines="False">
-                                <Grid.ColumnDefinitions>
+                                <!--<Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
                                     <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>
+                                </Grid.ColumnDefinitions>-->
                                 <StackPanel Margin="10" Orientation="Vertical">
                                     <TextBlock Text="{Binding Path=Contactname}"
-                                                Style="{StaticResource MessageUsername}"/>
-                                        <TextBlock Text="{Binding UserMessage}"/>
-                                        <TextBlock Text="{Binding StartDate}"/>
-                                    </StackPanel>
-                             </Grid>
-                        </Border>
-                    </DataTemplate>
-            </ListBox.ItemTemplate>
-            </ListBox>
-            <!--<ListBox ItemsSource="{Binding Users}" >
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Border x:Name="border" Background="{StaticResource PrimaryHueDarkBrush}" CornerRadius="15 15 15 0" Margin="10 12" >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Margin="10" Grid.Column="0" TextWrapping="Wrap" 
-                                          Text="{Binding Contactname}" Foreground="White"/>
-                                <TextBlock Margin="10" Grid.Column="1" TextWrapping="Wrap" 
-                                      Text="{Binding CustomMessage}" Foreground="White"/>
-                               
+                                               Style="{StaticResource MessageUsername}"/>
+                                    <TextBlock Text="{Binding UserMessage}"
+                                               TextWrapping="Wrap"
+                                               VerticalAlignment="Stretch"/>
+                                    <TextBlock Text="{Binding StartDate}" FontSize="10"/>
+                                </StackPanel>
                             </Grid>
                         </Border>
-                        <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding UserMessage}">
-                                <Setter TargetName="border" Property="BorderBrush" Value="Yellow"/>
-                                <Setter TargetName="border" Property="HorizontalAlignment" Value="Right"/>
-                            </DataTrigger>
-                        </DataTemplate.Triggers>
-                        
-                        </DataTemplate>
+                    </DataTemplate>
                 </ListBox.ItemTemplate>
-            </ListBox>-->
+            </ListBox>
         </Grid>
         <Grid x:Name="SendMessage" Grid.Row="3" 
               Grid.Column="2" Grid.ColumnSpan="5" 
