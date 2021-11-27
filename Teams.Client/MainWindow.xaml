@@ -60,7 +60,7 @@
         <viewmodel1:MainViewModel/>
     </Window.DataContext>
 
-    <Grid>
+    <Grid Background="#FFF3F2F0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="95"></ColumnDefinition>
             <ColumnDefinition Width="200"></ColumnDefinition>
@@ -190,7 +190,7 @@
             </Grid>
         </Border>
         <Border x:Name="lefttMenu" Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" 
-              Background="#343644">
+              Background="#FF333449">
             <Grid>
                 <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top">
@@ -266,7 +266,7 @@
             </Grid>
         </Border>
         <Grid x:Name="MenuTeam" Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" 
-              Background="#F0F0F0" Margin="10" >
+              Background="White" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -375,7 +375,7 @@
               Grid.Column="2" Grid.ColumnSpan="5" 
               Background="#F2F2EC">
 
-            <TextBox  Margin="20" Background="White"
+            <TextBox  Margin="10" Background="White"
                   TextWrapping="Wrap"
                   VerticalAlignment="Stretch"
                   AcceptsReturn="True"
@@ -391,12 +391,42 @@
         </Grid>
         <Grid Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Background="#F5F5F5">
             <StackPanel Orientation="Horizontal" Margin="120,0,0,0">
-                <Button VerticalAlignment="Top">1</Button>
-                <Button VerticalAlignment="Top" >2</Button>
-                <Button VerticalAlignment="Top">Button3</Button>
-                <Button VerticalAlignment="Top" >Button 4</Button>
-                <Button VerticalAlignment="Top" >Button 5</Button>
-                <Button VerticalAlignment="Top" >Button 6</Button>
+                <Button Height="30" Width="40" VerticalAlignment="Top" 
+                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                    <materialDesign:PackIcon Kind="AlienOutline"
+                                                 HorizontalAlignment="Center"/>
+
+                </Button>
+                <Button Height="30" Width="40" VerticalAlignment="Top" 
+                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                    <materialDesign:PackIcon Kind="AnimationOutline"
+                                                 HorizontalAlignment="Center"/>
+
+                </Button>
+                <Button Height="30" Width="40" VerticalAlignment="Top" 
+                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                    <materialDesign:PackIcon Kind="Paperclip"
+                                                 HorizontalAlignment="Center"/>
+
+                </Button>
+                <Button Height="30" Width="40" VerticalAlignment="Top" 
+                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                    <materialDesign:PackIcon Kind="FileGifBox"
+                                                 HorizontalAlignment="Center"/>
+
+                </Button>
+                <Button Height="30" Width="40" VerticalAlignment="Top" 
+                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                    <materialDesign:PackIcon Kind="EmoticonHappyOutline"
+                                                 HorizontalAlignment="Center"/>
+
+                </Button>
+                <Button Height="30" Width="40" VerticalAlignment="Top" 
+                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                    <materialDesign:PackIcon Kind="CalendarMultipleCheck"
+                                                 HorizontalAlignment="Center"/>
+
+                </Button>
                 <Button Margin="100,0,0,0" VerticalAlignment="Top"
                         Command="{Binding SendCommand}"
                       Style="{StaticResource MaterialDesignIconForegroundButton}"
