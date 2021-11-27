@@ -12,40 +12,55 @@ namespace Teams.Client.MVVM.ViewModel
 	public class MainViewModel : MessageModel
 	{
 
-		public ICommand SendCommand { get; set; }
-
 		public ObservableCollection<ViewModelBase> Users { get; set; }
+
+		public ObservableCollection<ViewModelBase> Messages { get; set; }
 
 
 		public MainViewModel()
 		{
 			Users = new ObservableCollection<ViewModelBase>
 			{
-				new MessageModel  {
+				new MessageModel
+				{
+					UserName = "Georg"				
+				},
+				new MessageModel
+				{
+					UserName = "Valera"
+				},
+				new MessageModel
+				{
+					UserName = "Kot"
+				}
+			};
+			Messages = new ObservableCollection<ViewModelBase>
+			{
+				new MessageModel 
+				{
 					IsSending = true,
-					Contactname= "Iam",
-					Statusmessage= " from " ,
+					Contactname= "Iam",				
 					UserMessage = " hello my dear friend how are you? ",
 					MessagefromUser = "Все нормально" ,
 					StartDate = DateTime.Now,  },
-				new MessageModel {
+				new MessageModel 
+				{
 					IsSending= true,
 					Contactname="Iam",
-					Statusmessage="Recive . .. . . .",
 					UserMessage = "I have a question when can we meet? ",
 					MessagefromUser = "Какой блэт вопрос?",
 				},
-				new MessageModel {
+				new MessageModel 
+				{
 					IsSending = false,
-					Contactname="Friend",
-					Statusmessage="Hi my dear",
+					Contactname="Friend",					
 					UserMessage = " hello my dear friend how are you? ",
 					MessagefromUser = "Все нормально" ,
 													},
-				new MessageModel {
+				new MessageModel 
+				{
 					IsSending = false,
-					Contactname="Friend",
-					Statusmessage="qq ....... awdawdw",
+					Contactname="Friend",			
 					UserMessage = " hello my dear friend how are you? ",
 					MessagefromUser = "Все нормально"}
 			};
@@ -54,15 +69,16 @@ namespace Teams.Client.MVVM.ViewModel
 
 			SendCommand = new ActionCommand(o =>
 			{
-				Users.Add(new MessageModel
+				Messages.Add(new MessageModel
 				{
 					UserMessage = UserMessage,
 					IsSending = true
 				});
 			});
 		}
-		
+		public ICommand SendCommand { get; set; }
 		public ICommand CloseApplicationCommand { get; }
+
 		private void OnCloseApplicationCommandExecuted(object p)
 		{ Application.Current.Shutdown(); }
 		private bool CanCloseApplicationCommandExecuted(object p) { return true; }

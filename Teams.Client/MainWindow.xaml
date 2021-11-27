@@ -25,11 +25,13 @@
             <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
-        <Style x:Key="TextBlockLeftMenuStyle" TargetType="TextBlock"  BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+        <Style x:Key="TextBlockLeftMenuStyle" TargetType="TextBlock" 
+               BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
             <Setter Property="Padding" Value="0 20 0 0"/>
             <Setter Property="TextAlignment" Value="Center"/>
         </Style>
-        <Style x:Key="MessageStyle" TargetType="Border" BasedOn="{StaticResource MaterialDesignToolBarMainPanelBorderStyle}">
+        <Style x:Key="MessageStyle" TargetType="Border" 
+               BasedOn="{StaticResource MaterialDesignToolBarMainPanelBorderStyle}">
             <Setter Property="CornerRadius" Value="8"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="TextBlock.Foreground" Value="White"/>
@@ -50,7 +52,16 @@
             <Setter Property="Visibility" Value="Visible" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=IsSending}" Value="True">
+                    <Setter Property="Text" Value="{Binding UserMessage}" />
                     <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MessageFormUser" TargetType="TextBlock">
+            <Setter Property="Text" Value="{Binding MessagefromUser}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsSending}" Value="True">
+                    <Setter Property="Text" Value="{Binding UserMessage}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -294,13 +305,15 @@
                 </materialDesign:TreeViewAssist.AdditionalTemplate>
                 <TreeViewItem
                     Header="General">
-                    <ListBox ItemsSource="{Binding Users}">
+                    <ListBox  ItemsSource="{Binding Users}"
+                             >
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="1">
                                     <materialDesign:Chip
-                                    Content="{Binding Contactname}"
-                                    ToolTip="{Binding Statusmessage}" >
+                                    Content="{Binding UserName }"
+                                    ToolTip="{Binding 
+                                        }" Cursor="Hand" >
                                         <materialDesign:Chip.Icon>
                                             <Image/>
                                         </materialDesign:Chip.Icon>
@@ -346,23 +359,19 @@
               Grid.RowSpan="2" VerticalAlignment="Bottom"  Grid.ColumnSpan="6" Background="#F5F5F5" >
             <ListBox 
                  x:Name="MessageList" 
-                 ItemsSource="{Binding Users}" 
+                 ItemsSource="{Binding Messages}" 
                  ItemContainerStyle="{StaticResource MessageContainerStyle}">
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type viewmodel1:MainViewModel}">
+                    <DataTemplate >
                         <Border Style="{StaticResource MessageStyle}" >
                             <Grid ShowGridLines="False">
-                                <!--<Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="auto"/>
-                                </Grid.ColumnDefinitions>-->
                                 <StackPanel Margin="10" Orientation="Vertical">
                                     <TextBlock Text="{Binding Path=Contactname}"
                                                Style="{StaticResource MessageUsername}"/>
-                                    <TextBlock Text="{Binding UserMessage}"
+                                    <TextBlock 
                                                TextWrapping="Wrap"
-                                               VerticalAlignment="Stretch"/>
+                                               VerticalAlignment="Stretch"
+                                               Style="{StaticResource MessageFormUser}"/>
                                     <TextBlock Text="{Binding StartDate}" FontSize="10"/>
                                 </StackPanel>
                             </Grid>
@@ -424,6 +433,12 @@
                 <Button Height="30" Width="40" VerticalAlignment="Top" 
                         Style="{StaticResource MaterialDesignIconForegroundButton}" >
                     <materialDesign:PackIcon Kind="CalendarMultipleCheck"
+                                                 HorizontalAlignment="Center"/>
+
+                </Button>
+                <Button Height="30" Width="40" VerticalAlignment="Top" 
+                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                    <materialDesign:PackIcon Kind="Video"
                                                  HorizontalAlignment="Center"/>
 
                 </Button>

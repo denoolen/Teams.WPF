@@ -9,7 +9,6 @@ namespace Teams.Client.MVVM.Model
 	 public class MessageModel : ViewModelBase
     {
         private string ContactName;
-        private string StatusMessage;
         private string Message;
         private string MessageFromUser;
         private DateTime _startDate = DateTime.Now;
@@ -33,15 +32,6 @@ namespace Teams.Client.MVVM.Model
                 OnPropertyChanged("Contactname");
             }
         }
-        public string Statusmessage
-        {
-            get { return StatusMessage; }
-            set
-            {
-                StatusMessage = value;
-                OnPropertyChanged("Statusmessage");
-            }
-        }
 
         public string UserMessage
         {
@@ -58,7 +48,17 @@ namespace Teams.Client.MVVM.Model
             set
             {
                 MessageFromUser = value;
-                OnPropertyChanged("CustomMessage");
+                OnPropertyChanged("MessagefromUser");
+            }
+        }
+        private string name;
+        public string UserName
+        {
+            get { return name; }
+            set
+            {
+                name = value;
+                OnPropertyChanged("UserName");
             }
         }
 
