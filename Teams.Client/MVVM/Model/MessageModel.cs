@@ -8,6 +8,8 @@ namespace Teams.Client.MVVM.Model
 {
 	 public class MessageModel : ViewModelBase
     {
+        private string _text;
+        private string name;
         private string ContactName;
         private string Message;
         private string MessageFromUser;
@@ -22,6 +24,7 @@ namespace Teams.Client.MVVM.Model
                 OnPropertyChanged("StartDate");
             }
         }
+ 
 
         public string Contactname
         {
@@ -51,7 +54,7 @@ namespace Teams.Client.MVVM.Model
                 OnPropertyChanged("MessagefromUser");
             }
         }
-        private string name;
+      
         public string UserName
         {
             get { return name; }
@@ -59,6 +62,14 @@ namespace Teams.Client.MVVM.Model
             {
                 name = value;
                 OnPropertyChanged("UserName");
+            }
+        }
+        
+        public string Text
+        {
+            get { return _text; }
+            set { _text = value; 
+                OnPropertyChanged(Text);
             }
         }
 

@@ -23,7 +23,7 @@ namespace Teams.Client.MVVM.ViewModel
 			{
 				new MessageModel
 				{
-					UserName = "Georg"				
+					UserName = "Georg"
 				},
 				new MessageModel
 				{
@@ -36,46 +36,57 @@ namespace Teams.Client.MVVM.ViewModel
 			};
 			Messages = new ObservableCollection<ViewModelBase>
 			{
-				new MessageModel 
+				new MessageModel
 				{
 					IsSending = true,
-					Contactname= "Iam",				
+					Contactname= "Iam",
 					UserMessage = " hello my dear friend how are you? ",
 					MessagefromUser = "Все нормально" ,
 					StartDate = DateTime.Now,  },
-				new MessageModel 
+				new MessageModel
 				{
 					IsSending= true,
 					Contactname="Iam",
 					UserMessage = "I have a question when can we meet? ",
 					MessagefromUser = "Какой блэт вопрос?",
 				},
-				new MessageModel 
+				new MessageModel
 				{
 					IsSending = false,
-					Contactname="Friend",					
+					Contactname="Friend",
 					UserMessage = " hello my dear friend how are you? ",
 					MessagefromUser = "Все нормально" ,
 													},
-				new MessageModel 
+				new MessageModel
 				{
 					IsSending = false,
-					Contactname="Friend",			
+					Contactname="Friend",
 					UserMessage = " hello my dear friend how are you? ",
 					MessagefromUser = "Все нормально"}
 			};
-
+			
 			CloseApplicationCommand = new ActionCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecuted);
 
 			SendCommand = new ActionCommand(o =>
 			{
 				Messages.Add(new MessageModel
 				{
+
 					UserMessage = UserMessage,
 					IsSending = true
+					
 				});
-			});
+				
+			} );
+			ClearCommand = new ActionCommand(Clear);
 		}
+		public ICommand ClearCommand { get; }
+
+		private void Clear(object p)
+		{
+			Text = string.Empty;
+		}
+
 		public ICommand SendCommand { get; set; }
 		public ICommand CloseApplicationCommand { get; }
 

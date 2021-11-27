@@ -65,7 +65,12 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-
+        <Style x:Key="ButtonDown" TargetType="Button" BasedOn="{StaticResource MaterialDesignIconForegroundButton}">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+      
+        </Style>
     </Window.Resources>
     <Window.DataContext>
         <viewmodel1:MainViewModel/>
@@ -90,7 +95,7 @@
                 Background="#6264A7"
                 MouseDown="Head_MouseDown">
 
-            <Grid HorizontalAlignment="Stretch">
+            <Grid>
                 <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Left">
                     <Button Style="{StaticResource ButtonHeadStyle}" >
@@ -255,7 +260,7 @@
                     </Button>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical"
+                <StackPanel Orientation="Vertical" Margin="0 0 0 30"
                                 VerticalAlignment="Bottom">
                     <Button Style="{StaticResource ButtonLeftMenuStyle}">
                         <Grid Width="40" Height="50">
@@ -288,7 +293,45 @@
                    FontWeight="Medium"
                    FontSize="16">
                 Team</Label>
-            <TreeView Grid.Row="1" Margin="5">
+            <!-- and here's another -->
+            <Grid Grid.Row="1" Margin="5">
+                <ItemsControl
+                    ItemsSource="{Binding Users}"
+                    Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                            x:Name="Border"
+                            Padding="8"
+                            BorderThickness="0 0 0 1"
+                            BorderBrush="{DynamicResource MaterialDesignDivider}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                  SharedSizeGroup="Checkerz" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <ToggleButton
+                                             VerticalAlignment="Center"
+                                             Content="U"
+                                            Style="{StaticResource MaterialDesignActionLightToggleButton}" Cursor="Hand" />
+                                    <StackPanel
+                                        Margin="8 0 0 0"
+                                       Grid.Column="1">
+                                        <TextBlock
+                                Text="{Binding UserName}"
+                                    FontWeight="Bold" />
+                                        <TextBlock
+                                   Text="LolKek" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+          
+            <!--<TreeView Grid.Row="1" Margin="5">
 
                 <materialDesign:TreeViewAssist.AdditionalTemplate>
                     <DataTemplate>
@@ -323,7 +366,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </TreeViewItem>
-            </TreeView>
+            </TreeView>-->
 
             <Grid Grid.Row="2" Background="White" Width="175" Height="30" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
@@ -380,75 +423,70 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <Grid x:Name="SendMessage" Grid.Row="3" 
+        <Grid Name="SendMessage" Grid.Row="3" 
               Grid.Column="2" Grid.ColumnSpan="5" 
               Background="#F2F2EC">
 
-            <TextBox  Margin="10" Background="White"
+            <TextBox 
+                  Name="SendMessages" Margin="10" Background="White"
                   TextWrapping="Wrap"
                   VerticalAlignment="Stretch"
-                  AcceptsReturn="True"
+                  
                   VerticalScrollBarVisibility="Auto"
                   SpellCheck.IsEnabled="True"
                   materialDesign:HintAssist.Hint="Send Message" Cursor="IBeam" 
-                  Text="{Binding UserMessage , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                  Text="{Binding UserMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }">
                 <TextBox.InputBindings>
-                    <KeyBinding Command="{Binding SendCommand}" Key="Return"/>
+                    <KeyBinding Command="{Binding SendCommand}" Key="Return" />
                 </TextBox.InputBindings>
             </TextBox>
 
         </Grid>
         <Grid Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="5" Background="#F5F5F5">
-            <StackPanel Orientation="Horizontal" Margin="120,0,0,0">
-                <Button Height="30" Width="40" VerticalAlignment="Top" 
-                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <Button Style="{StaticResource ButtonDown}" HorizontalAlignment="Center" >
                     <materialDesign:PackIcon Kind="AlienOutline"
                                                  HorizontalAlignment="Center"/>
 
                 </Button>
-                <Button Height="30" Width="40" VerticalAlignment="Top" 
-                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                <Button Style="{StaticResource ButtonDown}" >
                     <materialDesign:PackIcon Kind="AnimationOutline"
-                                                 HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center"/>
 
                 </Button>
-                <Button Height="30" Width="40" VerticalAlignment="Top" 
-                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                <Button  Style="{StaticResource ButtonDown}" >
                     <materialDesign:PackIcon Kind="Paperclip"
-                                                 HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center"/>
 
                 </Button>
-                <Button Height="30" Width="40" VerticalAlignment="Top" 
-                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                <Button Style="{StaticResource ButtonDown}" >
                     <materialDesign:PackIcon Kind="FileGifBox"
-                                                 HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center"/>
 
                 </Button>
-                <Button Height="30" Width="40" VerticalAlignment="Top" 
-                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                <Button Style="{StaticResource ButtonDown}" >
                     <materialDesign:PackIcon Kind="EmoticonHappyOutline"
-                                                 HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center"/>
 
                 </Button>
-                <Button Height="30" Width="40" VerticalAlignment="Top" 
-                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                <Button Style="{StaticResource ButtonDown}" >
                     <materialDesign:PackIcon Kind="CalendarMultipleCheck"
-                                                 HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center"/>
 
                 </Button>
-                <Button Height="30" Width="40" VerticalAlignment="Top" 
-                        Style="{StaticResource MaterialDesignIconForegroundButton}" >
+                <Button Style="{StaticResource ButtonDown}" >
                     <materialDesign:PackIcon Kind="Video"
-                                                 HorizontalAlignment="Center"/>
+                      HorizontalAlignment="Center"/>
 
                 </Button>
-                <Button Margin="100,0,0,0" VerticalAlignment="Top"
-                        Command="{Binding SendCommand}"
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Margin="0 0 100 0" >
+                <Button VerticalAlignment="Top" HorizontalAlignment="Left"
+                        Command="{Binding ClearCommand}"
                       Style="{StaticResource MaterialDesignIconForegroundButton}"
                          Height="30" Width="40" Click="Button_Click" Cursor="Hand">
                     <materialDesign:PackIcon
-                                 Kind="Send" 
-                            />
+                                 Kind="Send"/>
                 </Button>
             </StackPanel>
         </Grid>
